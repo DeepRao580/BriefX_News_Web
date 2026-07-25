@@ -1,7 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import Store from "../store/Store";
 function NewsCard({ singleNews }) {
+
+  const { bookmarks,addBookmark,removeBookmark }=Store()
+
+  const isBooked=bookmarks.some((booked)=>booked.id===singleNews.id)
+
   return (
     <div className="group mx-auto w-full max-w-\[560px] overflow-hidden rounded-\[32px] bg-white p-5 shadow-[0_12px_40px_rgba(0,0,0,0.12)] ring-1 ring-gray-200 transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_30px_70px_rgba(59,130,246,0.25)]">
       
@@ -19,9 +24,15 @@ function NewsCard({ singleNews }) {
         {singleNews.title}
       </p>
 
-      <p className="mt-6 inline-flex cursor-pointer items-center gap-2 rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-600">
+      <div className="flex justify-start items-center gap-6">
+        <button className="mt-6 inline-flex cursor-pointer items-center gap-2 rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-600"
+        onClick={()=>{isBooked?removeBookmark(singleNews.id):addBookmark(singleNews)}} >
         📌Bookmark
-      </p>
+        </button>
+        <span className="text-5xl transition-transform duration-300 hover:scale-125">
+          {isBooked ? "📌" : "📍"}
+        </span>
+      </div>
 
       <div className="mt-8 flex justify-center">
         <Link

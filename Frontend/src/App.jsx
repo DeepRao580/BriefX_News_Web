@@ -11,7 +11,7 @@ import SportsNews from "./pages/SportsNews"
 import HealthNews from "./pages/HealthNews"
 import ScienceNews from "./pages/ScienceNews"
 import EntertainmentNews from "./pages/EntertainmentNews"
-
+import Bookmark from "./pages/Bookmark"
 
 function App(){
     return(
@@ -28,6 +28,7 @@ function App(){
                     <Route path="/healthnews" element={<HealthNews/>}/>
                     <Route path="/sciencenews" element={<ScienceNews/>}/>
                     <Route path="/entertainmentnews" element={<EntertainmentNews/>}/>
+                    <Route path="/bookmarks" element={<Bookmark/>}/>
                 </Route>
 
             </Routes>

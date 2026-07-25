@@ -18,7 +18,6 @@ function Home(){
                                         );
                 const data=await response.json()
                 console.log(data.news)
-                console.log(response.status);
                 setAllRecentNews(data.news)
             } catch (error) {
                 console.error("Error in fetching recent news",error)

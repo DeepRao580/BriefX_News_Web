@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Store from "../store/Store";
+import Store from "../store/Store.js";
 function NewsCard({ singleNews }) {
 
-  const { bookmarks,addBookmark,removeBookmark }=Store()
+  const { bookmarks,addBookmark,removeBookmark }=Store();
 
   const isBooked=bookmarks.some((booked)=>booked.id===singleNews.id)
 
@@ -36,7 +36,7 @@ function NewsCard({ singleNews }) {
 
       <div className="mt-8 flex justify-center">
         <Link
-          to="/searchnews/:id"
+           to={`/searchnews/${encodeURIComponent(singleNews.id)}`}
           className="rounded-lg bg-blue-600 px-6 py-3 text-base font-semibold text-white transition-all duration-300 hover:bg-blue-700 hover:shadow-lg"
         >
           Read More →

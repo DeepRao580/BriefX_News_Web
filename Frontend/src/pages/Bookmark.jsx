@@ -1,10 +1,9 @@
 import react from "react";
 import NewsCard from "../components/NewsCard";
-import Store from "../store/Store";
+import Store from "../store/Store.js";
 
 function Bookmark() {
-  const { bookmarks } = Store();
-
+  const { bookmarks } = Store()
   return (
     <div className="min-h-screen px-6 py-10">
       <div className="text-4xl font-bold text-center text-gray-800 mb-10">

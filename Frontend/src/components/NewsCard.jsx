@@ -12,7 +12,7 @@ function NewsCard({ singleNews }) {
       />
 
       <p className="mt-7 text-center text-sm font-semibold uppercase tracking-[3px] text-gray-500">
-        {singleNews.publishedAt}
+        {singleNews.published}
       </p>
 
       <p className="mx-auto mt-6 max-w-[92%] text-center text-[30px] font-extrabold leading-\[42px] tracking-tight text-slate-900 transition-all duration-300 group-hover:text-blue-600 line-clamp-3">

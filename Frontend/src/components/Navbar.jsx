@@ -1,14 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import BriefX from "../assets/BriefX_crop.png";
 
 function Navbar(){
+
+    const[currentDate , setCurrentDate]= useState(null);
+    useEffect(()=>{
+        const today= new Date();
+
+        const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+        const monthName=months[today.getMonth()]
+        const date=today.getDate()
+        const year=today.getFullYear()
+
+        const completeDate= `${monthName} ${date} , ${year}`
+
+        setCurrentDate(completeDate)
+    },[])
+
+
     return(
-        <div>
-            <div className="navbar bg-base-300 shadow-sm flex justify-between">
+        <div className="bg-white">
+            <div className="navbar bg-white shadow-sm flex justify-between">
                 <div className="flex">
-                    <a className="btn btn-ghost text-xl">BriefX</a>
+                    <span className="text-black ">{currentDate? currentDate : "Loading.."}</span>
                 </div>
                 <div className="flex">
-                    <input type="text" placeholder="Search" className="input w-200 rounded-xl" />
+                    <img src={BriefX} alt="BriefX" style={{height: "100px", width: "auto", objectFit: "cover",}}/>
                 </div>
                 <div className="dropdown dropdown-end">
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">

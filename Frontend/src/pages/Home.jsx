@@ -10,12 +10,12 @@ function Home(){
             try {
                 setLoading(true)
                 const response = await fetch("https://api.currentsapi.services/v1/latest-news?language=en&country=IN&page_size=20",
-                                            {
-                                                headers: {
-                                                Authorization: "Bearer 3_GNNVR2Emb8qXiipno9SuqKu7ztJBt6tSYiu84bMrw6ZbM7",
-                                                },
-                                            }
-                                        );
+                {
+                    headers: {
+                        Authorization: "Bearer 3_GNNVR2Emb8qXiipno9SuqKu7ztJBt6tSYiu84bMrw6ZbM7",
+                    },
+                }
+                );
                 const data=await response.json()
                 console.log(data.news)
                 setAllRecentNews(data.news)
@@ -42,4 +42,3 @@ function Home(){
 );
 }
 export default Home
-

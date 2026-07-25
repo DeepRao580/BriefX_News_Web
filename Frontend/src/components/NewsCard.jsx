@@ -29,7 +29,7 @@ function NewsCard({ singleNews }) {
         onClick={()=>{isBooked?removeBookmark(singleNews.id):addBookmark(singleNews)}} >
         📌Bookmark
         </button>
-        <span className="text-5xl transition-transform duration-300 hover:scale-125">
+        <span className="text-6xl transition-transform duration-300 hover:scale-125">
           {isBooked ? "📌" : "📍"}
         </span>
       </div>

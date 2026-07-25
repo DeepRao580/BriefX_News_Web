@@ -4,6 +4,7 @@ import Store from "../store/Store.js";
 
 function Bookmark() {
   const { bookmarks } = Store()
+
   return (
     <div className="min-h-screen px-6 py-10">
       <div className="text-4xl font-bold text-center text-gray-800 mb-10">

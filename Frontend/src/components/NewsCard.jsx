@@ -27,7 +27,7 @@ function NewsCard({ singleNews }) {
       <div className="flex justify-start items-center gap-6">
         <button className="mt-6 inline-flex cursor-pointer items-center gap-2 rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-600"
         onClick={()=>{isBooked?removeBookmark(singleNews.id):addBookmark(singleNews)}} >
-        📌Bookmark
+        {isBooked?"bookmarked":"bookmark"}
         </button>
         <span className="text-6xl transition-transform duration-300 hover:scale-125">
           {isBooked ? "📌" : "📍"}

@@ -15,7 +15,7 @@ function EntertainmentNews() {
           {
             headers: {
               Authorization:
-                "Bearer 3_GNNVR2Emb8qXiipno9SuqKu7ztJBt6tSYiu84bMrw6ZbM7",
+                import.meta.env.VITE_CURRENTS_API_KEY,
             },
           }
         );

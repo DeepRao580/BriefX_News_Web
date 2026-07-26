@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Store from "../store/Store.js"
+import { generateNewsSummary } from "../service/groq";
+
 
 function NewsDetail() {
   const { bookmarks,addBookmark,removeBookmark }=Store();
   const [newsDetail, setNewsDetail] = useState(null);
   const [loading, setLoading] = useState(true);
-   const isBooked=bookmarks.some((booked)=>booked.id===newsDetail.id)
+  const isBooked=bookmarks.some((booked)=>booked.id===newsDetail.id)
+
+
+  const [aiSummary, setAiSummary] = useState("");
+  const [aiLoading, setAiLoading] = useState(false);
 
   const { id } = useParams();
 
@@ -20,7 +26,7 @@ function NewsDetail() {
           {
             headers: {
               Authorization:
-                "Bearer 3_GNNVR2Emb8qXiipno9SuqKu7ztJBt6tSYiu84bMrw6ZbM7",
+                import.meta.env.VITE_CURRENTS_API_KEY,
             },
           }
         );
@@ -40,10 +46,27 @@ function NewsDetail() {
     fetchNewsDetail();
   }, [id]);
 
+  const generateSummary = async () => {
+  try {
+    setAiLoading(true);
+
+    const result = await generateNewsSummary(
+      newsDetail.title,
+      newsDetail.description
+    );
+
+    setAiSummary(result);
+  } catch (error) {
+    console.log(error);
+  } finally {
+    setAiLoading(false);
+  }};
+
+
   if (loading) {
     return (
       <div className="flex h-screen items-center justify-center">
-        <p className="text-3xl font-bold text-gray-700 animate-pulse">
+        <p className="text-3xl font-bold animate-pulse">
           Loading...
         </p>
       </div>
@@ -96,6 +119,34 @@ function NewsDetail() {
           {isBooked ? "📌" : "📍"}
         </span>
       </div>
+
+      <button onClick={generateSummary} disabled={aiLoading} className="mt-6 rounded-lg bg-purple-600 px-4 py-2 text-white hover:bg-purple-700" >
+        {aiLoading ? "Generating..." : "🤖 AI Summary"}
+      </button>
+
+      {aiSummary && (
+      <div className="mt-10 overflow-hidden rounded-3xl border border-white/20 bg-white/80 p-8 shadow-[0_20px_60px_rgba(0,0,0,0.15)] backdrop-blur-xl">
+        <div className="mb-6 flex items-center gap-4">
+          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-500 to-fuchsia-500 text-3xl shadow-lg">
+            🤖
+          </div>
+
+          <div>
+            <h2 className="text-3xl font-extrabold">
+              AI News Explanation
+            </h2>
+            <p className="text-sm opacity-70">
+              Smart summary generated using AI
+            </p>
+          </div>
+        </div>
+
+      <div className="rounded-2xl bg-linear-to-br from-slate-50 to-white p-6 shadow-inner">
+        <p className="whitespace-pre-wrap text-lg leading-9">
+          {aiSummary}
+        </p>
+      </div>
+      </div>)}
 
       <Link
         to="/"

@@ -127,7 +127,7 @@ function NewsDetail() {
       {aiSummary && (
       <div className="mt-10 overflow-hidden rounded-3xl border border-white/20 bg-white/80 p-8 shadow-[0_20px_60px_rgba(0,0,0,0.15)] backdrop-blur-xl">
         <div className="mb-6 flex items-center gap-4">
-          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-500 to-fuchsia-500 text-3xl shadow-lg">
+          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-linear-to-br from-violet-500 to-fuchsia-500 text-3xl shadow-lg">
             🤖
           </div>
 

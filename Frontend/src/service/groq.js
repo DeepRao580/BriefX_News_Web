@@ -18,13 +18,12 @@ export async function generateNewsSummary(title, description) {
           role: "user",
           content: `Explain this news in simple English.
 
-Title: ${title}
+                    Title: ${title}
+                    Description: ${description}
 
-Description: ${description}
-
-Give:
-1. All Details
-2. Summary`,
+                    Give:
+                   1. All Details
+                   2. Summary`,
         },
       ],
       temperature: 0.7,

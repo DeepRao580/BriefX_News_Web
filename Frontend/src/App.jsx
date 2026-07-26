@@ -12,10 +12,12 @@ import HealthNews from "./pages/HealthNews"
 import ScienceNews from "./pages/ScienceNews"
 import EntertainmentNews from "./pages/EntertainmentNews"
 import Bookmark from "./pages/Bookmark"
+import Store from "./store/Store"
 
 function App(){
+    const { theme }=Store()
     return(
-        <div className="bg-white">
+        <div style={{background:theme==="light"?"white":"black", color:theme==="light"?"black":"white",minHeight:"100vh"}}>
             <Routes>
                 <Route path="/" element={<Layout/>}>
                     <Route index element={<Home/>}/>

@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import Store from "../store/Store.js"
 
 function NewsDetail() {
+  const { bookmarks,addBookmark,removeBookmark }=Store();
   const [newsDetail, setNewsDetail] = useState(null);
   const [loading, setLoading] = useState(true);
+   const isBooked=bookmarks.some((booked)=>booked.id===newsDetail.id)
 
   const { id } = useParams();
 
@@ -59,17 +62,20 @@ function NewsDetail() {
 
   return (
     <div className="mx-auto max-w-6xl px-6 py-10">
+      <div className="mb-16 text-center text-6xl font-extrabold tracking-tight">
+        📑 News Details
+      </div>
       <img
         src={newsDetail?.image}
         alt="News_Image"
         className="h-\[450px] w-full rounded-3xl object-cover shadow-2xl transition duration-500 hover:scale-[1.02]"
       />
 
-      <p className="mt-8 text-5xl font-extrabold leading-tight text-gray-900">
+      <p className="mt-8 text-5xl font-extrabold leading-tight">
         {newsDetail?.title}
       </p>
 
-      <p className="mt-8 text-lg leading-9 text-gray-700">
+      <p className="mt-8 text-lg leading-9">
         {newsDetail?.description}
       </p>
 
@@ -80,6 +86,16 @@ function NewsDetail() {
       <p className="mt-4 w-70 rounded-full border border-gray-300 bg-gray-100 px-5 py-2 text-sm font-semibold text-gray-700">
         📅 {newsDetail?.published}
       </p>
+
+      <div className="flex justify-start items-center gap-6">
+        <button className="mt-6 inline-flex cursor-pointer items-center gap-2 rounded-lg bg-red-900 px-4 py-2 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-600"
+        onClick={()=>{isBooked?removeBookmark(newsDetail.id):addBookmark(newsDetail)}} >
+        {isBooked?"bookmarked":"bookmark"}
+        </button>
+        <span className="text-6xl transition-transform duration-300 hover:scale-125">
+          {isBooked ? "📌" : "📍"}
+        </span>
+      </div>
 
       <Link
         to="/"

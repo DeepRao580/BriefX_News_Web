@@ -3,18 +3,17 @@ import NewsCard from "../components/NewsCard";
 import Store from "../store/Store.js";
 
 function Bookmark() {
-  const { bookmarks } = Store()
-  console.log(bookmarks)
+  const { bookmarks } = Store();
 
   return (
-    <div className="min-h-screen px-6 py-10">
-      <div className="text-4xl font-bold text-center text-gray-800 mb-10">
+    <div className="min-h-screen px-16 md:px-24 xl:px-40 py-16">
+      <div className="mb-16 text-center text-6xl font-extrabold tracking-tight">
         📑 Bookmarks
       </div>
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+      <div className="mx-auto max-w-[1900px] grid grid-cols-1 place-items-center gap-x-24 gap-y-24 lg:grid-cols-2">
         {bookmarks.map((booked) => {
-          return <NewsCard singleNews={booked} />;
+          return <NewsCard key={booked.id} singleNews={booked} />;
         })}
       </div>
     </div>

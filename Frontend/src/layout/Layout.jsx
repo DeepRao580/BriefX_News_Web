@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom"
 
 function Layout(){
     return(
-        <div>
+        <div style={{padding:"40px"}}>
             <Navbar/>
             <Outlet/>
         </div>

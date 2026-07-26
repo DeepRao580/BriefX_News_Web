@@ -15,7 +15,7 @@ import Bookmark from "./pages/Bookmark"
 
 function App(){
     return(
-        <div>
+        <div className="bg-white">
             <Routes>
                 <Route path="/" element={<Layout/>}>
                     <Route index element={<Home/>}/>

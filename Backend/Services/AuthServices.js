@@ -1,4 +1,4 @@
-import { createUser, findUserByEmail } from "../repositories/userRepository.js"
+import { createUser, findUserByEmail } from "../Repositories/AuthRepository.js"
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 export const signupUser = async({name, email ,password})=>{

@@ -2,9 +2,10 @@ import dns from "node:dns"
 dns.setServers(["8.8.8.8","1.1.1.1"])
 import express from 'express'
 import cors from 'cors'
-import 'dotenv/config'
+import dotenv from "dotenv";
+dotenv.config();
 import mongoose from 'mongoose'
-import authRoutes from './src/Routes/auth_routes.js'
+import AuthRoutes from "./Routes/AuthRoutes.js"
 const app= express()
 
 app.use(cors())
@@ -24,7 +25,7 @@ const connectDB= async()=>{
 
 connectDB();
 
-app.use('/api/auth',authRoutes)
+app.use('/api/auth',AuthRoutes)
 
 const PORT= process.env.PORT
 

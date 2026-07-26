@@ -1,7 +1,7 @@
-import User from "../Models/AuthModel";
+import User from "../Models/AuthModel.js";
 
 export const findUserByEmail= async(email)=>{
-    return await User.findOne(email)
+    return await User.findOne({email})
 }
 
 export const findUserById= async(id)=>{

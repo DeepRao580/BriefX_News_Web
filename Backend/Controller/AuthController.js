@@ -1,4 +1,4 @@
-import { loginUser, signupUser } from "../services/authService.js"
+import { loginUser, signupUser } from "../services/AuthServices.js"
 
 
 export const signup = async(req, res) =>{
@@ -31,7 +31,7 @@ export const login = async(req, res) =>{
     } catch (err) {
         res.status(404).json({
             success: false,
-            message: 'tumse na ho paega',
+            message:err.message,
         })
     }
 

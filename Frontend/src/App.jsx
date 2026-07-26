@@ -13,6 +13,8 @@ import ScienceNews from "./pages/ScienceNews"
 import EntertainmentNews from "./pages/EntertainmentNews"
 import Bookmark from "./pages/Bookmark"
 import Store from "./store/Store"
+import Signup from "./pages/Signup"
+import Login from "./pages/Login"
 
 function App(){
     const { theme }=Store()
@@ -32,7 +34,8 @@ function App(){
                     <Route path="/entertainmentnews" element={<EntertainmentNews/>}/>
                     <Route path="/bookmarks" element={<Bookmark/>}/>
                 </Route>
-
+                <Route path="/signup" element={<Signup/>}/>
+                <Route path="/login" element={<Login/>}/>
             </Routes>
         </div>
     )

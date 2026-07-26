@@ -85,22 +85,21 @@ function Navbar() {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
             <li>
-              <a className="justify-between">
+              <Link className="badge font-bold">
                 Profile
-                <span className="badge">New</span>
-              </a>
+              </Link>
             </li>
 
             <li>
-              <a>Settings</a>
+              <Link className="badge">Settings</Link>
             </li>
 
             <li>
-              <a>Logout</a>
+              <Link className="badge">Logout</Link>
             </li>
 
             <li>
-              <Link to="/bookmarks">Bookmarks</Link>
+              <Link to="/bookmarks" className="badge">Bookmarks</Link>
             </li>
           </ul>
         </div>

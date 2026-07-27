@@ -80,45 +80,18 @@ function Signup() {
           </p>
         </div>
         <div className="space-y-5">
-          <input
-            type="text"
-            placeholder="Enter your name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
+          <input type="text" placeholder="Enter your name" name="name" value={formData.name} onChange={handleChange}
             className="input input-bordered w-full h-12"
           />
-          <input
-            type="email"
-            placeholder="Enter your email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
+          <input type="email" placeholder="Enter your email" name="email" value={formData.email} onChange={handleChange}
             className="input input-bordered w-full h-12"
           />
-          <input
-            type="password"
-            placeholder="Enter your password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
+          <input type="password" placeholder="Enter your password" name="password" value={formData.password} onChange={handleChange}
             className="input input-bordered w-full h-12"
           />
-          <button
-            onClick={handleSubmit}
-            disabled={loading}
-            className="btn btn-primary w-full h-12 text-base"
-          >
-            {loading ? (
-              <div>
-                <span className="loading loading-spinner loading-sm"></span>
-                Creating...
-              </div>
-            ) : (
-              "Create Account"
-            )}
+          <button onClick={handleSubmit} disabled={loading} className="btn btn-primary w-full h-12 text-base">
+            {loading ? (<div><span className="loading loading-spinner loading-sm"></span>Creating...</div>) : ("Create Account")}
           </button>
-
         </div>
 
         <div className="mt-6 text-center text-lg text-gray-600">
@@ -129,16 +102,11 @@ function Signup() {
         </div>
 
         {toast && (
-          <div
-            className={`alert mt-6 ${
-              toast.type === "success"
-                ? "alert-success"
-                : "alert-error"
-            }`}>
+          <div className={`alert mt-6 ${toast.type === "success"? "alert-success": "alert-error"}`}>
             <span>{toast.message}</span>
           </div>
         )}
-        
+
       </div>
       </form>
     </div>

@@ -2,8 +2,10 @@ import React from "react"
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom"
-function Login(){
+import useAuthStore from "../store/useAuthStore"
 
+function Login(){
+    const {login}= useAuthStore()
     const[loading, setLoading]=useState(false)
     const[formData, setFormData]=useState({
         email:"",
@@ -16,7 +18,7 @@ function Login(){
         if(toast){
             const timerId = setTimeout(()=>{
                 setToast(null)
-            },3000)
+            },2000)
 
             return()=>{clearTimeout(timerId)}
         }
@@ -43,6 +45,8 @@ function Login(){
             if(!response.ok){
                 throw new Error(data.message || "Login Failed")
             }
+
+            login(data.user,data.token)
 
             setToast({message:"Login Successful", type:"success"})
 

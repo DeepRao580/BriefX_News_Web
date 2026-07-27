@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import NewsCard from "../components/NewsCard";
 import Store from "../store/Store";
+
 function Home() {
   const [loading, setLoading] = useState(true);
   const [allRecentNews, setAllRecentNews] = useState(null);

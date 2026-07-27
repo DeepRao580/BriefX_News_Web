@@ -15,6 +15,7 @@ import Bookmark from "./pages/Bookmark"
 import Store from "./store/Store"
 import Signup from "./pages/Signup"
 import Login from "./pages/Login"
+import Profile from "./pages/Profile"
 import ProtectedRoute from "./components/ProtectedRoute"
 import PublicRoute from "./components/PublicRoute"
 
@@ -35,6 +36,7 @@ function App(){
                     <Route path="/sciencenews" element={<ProtectedRoute><ScienceNews/></ProtectedRoute>}/>
                     <Route path="/entertainmentnews" element={<ProtectedRoute><EntertainmentNews/></ProtectedRoute>}/>
                     <Route path="/bookmarks" element={<ProtectedRoute><Bookmark/></ProtectedRoute>}/>
+                    <Route path="/profile" element={<ProtectedRoute><Profile/></ProtectedRoute>}></Route>
                 </Route>
                 <Route path="/signup" element={<PublicRoute><Signup/></PublicRoute>}/>
                 <Route path="/login" element={<PublicRoute><Login/></PublicRoute>}/>

@@ -22,8 +22,10 @@ export async function generateNewsSummary(title, description) {
                     Description: ${description}
 
                     Give:
-                   1. All Details
-                   2. Summary`,
+                   1. Full Detail
+                   2. Summary
+                   3. Facts
+                   4. Trend Detection`,
         },
       ],
       temperature: 0.7,

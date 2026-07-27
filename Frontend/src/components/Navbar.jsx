@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import BriefX from "../assets/BriefX_crop.png";
 import { Link } from "react-router-dom";
 import Store from "../store/Store.js";
+import { FaUserCircle } from "react-icons/fa";
 
 function Navbar() {
   const { theme, toggleTheme,lang,toggleLang } = Store();
@@ -29,18 +30,17 @@ function Navbar() {
             {currentDate ? currentDate : "Loading..."}
           </span>
         </div>
-
         <div className="flex-1 flex justify-center">
           <img src={BriefX} alt="BriefX" className="h-24 w-auto object-contain"/>
         </div>
         <div className="flex-1 flex justify-end items-center gap-4">
-          <Link to="/signup" className="btn btn-outline btn-primary">
-            Sign Up
-          </Link>
+          <Link to="/signup" className="btn btn-outline btn-primary">Sign Up</Link>
 
-          <Link to="/login" className="btn btn-primary">
-            Login
-          </Link>
+          <Link to="/login" className="btn btn-primary">Login</Link>
+
+          <Link to="/logout" className="btn bg-red-500 text-white">Logout</Link>
+          <Link to="/profile" className="flex h-12 w-12 items-center justify-center rounded-full text-blue-600 hover:text-indigo-700 transition-all duration-300 hover:scale-110">
+            <FaUserCircle size={42} /></Link>
         </div>
 
         <div className="dropdown dropdown-end">
@@ -55,14 +55,6 @@ function Navbar() {
               <Link className="badge font-bold">
                 Profile
               </Link>
-            </li>
-
-            <li>
-              <Link className="badge">Settings</Link>
-            </li>
-
-            <li>
-              <Link className="badge">Logout</Link>
             </li>
 
             <li>

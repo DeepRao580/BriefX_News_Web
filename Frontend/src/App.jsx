@@ -17,7 +17,7 @@ import Signup from "./pages/Signup"
 import Login from "./pages/Login"
 import ProtectedRoute from "./components/ProtectedRoute"
 import PublicRoute from "./components/PublicRoute"
-
+import Logout from "./pages/Logout"
 function App(){
     const { theme }=Store()
     return(
@@ -35,6 +35,7 @@ function App(){
                     <Route path="/sciencenews" element={<ProtectedRoute><ScienceNews/></ProtectedRoute>}/>
                     <Route path="/entertainmentnews" element={<ProtectedRoute><EntertainmentNews/></ProtectedRoute>}/>
                     <Route path="/bookmarks" element={<ProtectedRoute><Bookmark/></ProtectedRoute>}/>
+                    <Route path="/logout" element={<ProtectedRoute><Logout/></ProtectedRoute>}/>
                 </Route>
                 <Route path="/signup" element={<PublicRoute><Signup/></PublicRoute>}/>
                 <Route path="/login" element={<PublicRoute><Login/></PublicRoute>}/>

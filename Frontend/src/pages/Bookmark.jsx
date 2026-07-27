@@ -11,7 +11,7 @@ function Bookmark() {
         📑 Bookmarks
       </div>
 
-      <div className="mx-auto max-w-[1900px] grid grid-cols-1 place-items-center gap-x-24 gap-y-24 lg:grid-cols-2">
+      <div className="mx-auto max-w-[1900px] grid grid-cols-1 place-items-center gap-x-24 gap-y-24 lg:grid-cols-3">
         {bookmarks.map((booked) => {
           return <NewsCard key={booked.id} singleNews={booked} />;
         })}

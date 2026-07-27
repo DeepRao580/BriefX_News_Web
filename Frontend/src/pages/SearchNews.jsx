@@ -62,7 +62,7 @@ function SearchNews() {
       />
 
       <div className="mx-auto max-w-[1850px] px-12 md:px-24 2xl:px-40">
-        <div className="grid grid-cols-1 place-items-center gap-x-24 gap-y-20 lg:grid-cols-2">
+        <div className="grid grid-cols-1 place-items-center gap-x-24 gap-y-20 lg:grid-cols-3">
           {allRecentNews.map((singleNews, index) => (
             <NewsCard key={index} singleNews={singleNews} />
           ))}

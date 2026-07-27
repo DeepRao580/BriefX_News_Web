@@ -82,7 +82,7 @@ function NewsDetail() {
       </div>
     );
   }
-
+  if(newsDetail){
   return (
     <div className="mx-auto max-w-6xl px-6 py-10">
       <div className="mb-16 text-center text-6xl font-extrabold tracking-tight">
@@ -143,7 +143,7 @@ function NewsDetail() {
 
       <div className="rounded-2xl bg-linear-to-br from-slate-50 to-white p-6 shadow-inner">
         <p className="whitespace-pre-wrap text-lg leading-9">
-          {aiSummary}
+        {aiSummary}
         </p>
       </div>
       </div>)}
@@ -155,7 +155,7 @@ function NewsDetail() {
         ← Back to Home
       </Link>
     </div>
-  );
+  );}
 }
 
 export default NewsDetail;

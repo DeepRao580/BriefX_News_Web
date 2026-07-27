@@ -48,10 +48,13 @@ function SearchNews() {
   if (loading) return <h1 className="mt-20 text-center text-3xl font-bold">Loading...</h1>;
 
   return (
-    <div className="min-h-screen mt-20">
-      <div className="mb-14 text-center text-5xl font-extrabold tracking-tight md:text-6xl">
+  <div className="min-h-screen mt-20 bg-slate-50">
+
+    <div className="mb-16 text-center">
+      <h1 className="text-5xl font-black tracking-tight text-slate-900 md:text-6xl">
         📰 Search News
-      </div>
+      </h1>
+    </div>
 
       <input
         type="text"
@@ -61,15 +64,18 @@ function SearchNews() {
         className="mx-auto mb-16 block w-[90%] max-w-2xl rounded-2xl border-2 border-gray-300 bg-white px-6 py-4 text-lg font-medium text-gray-800 shadow-lg outline-none transition-all duration-300 placeholder:text-gray-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-200"
       />
 
-      <div className="mx-auto max-w-[1850px] px-12 md:px-24 2xl:px-40">
-        <div className="grid grid-cols-1 place-items-center gap-x-24 gap-y-20 lg:grid-cols-3">
-          {allRecentNews.map((singleNews, index) => (
-            <NewsCard key={index} singleNews={singleNews} />
-          ))}
+        <div className="mx-auto w-full max-w-[1800px] px-6">
+
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 xl:grid-cols-3">
+
+        {allRecentNews.map((singleNews, index) => (
+          <NewsCard key={index} singleNews={singleNews} />
+        ))}
         </div>
       </div>
     </div>
   );
+
 }
 
 export default SearchNews;

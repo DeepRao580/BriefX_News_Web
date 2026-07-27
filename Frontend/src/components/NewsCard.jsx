@@ -10,47 +10,60 @@ function NewsCard({ singleNews }) {
   );
 
   return (
-    <div className="group flex h-[560px] w-full flex-col overflow-hidden rounded-3xl bg-white p-5 shadow-md ring-1 ring-gray-200 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+    <div className="group flex h-\[620px] w-full flex-col overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
 
       <img
         src={singleNews.image}
         alt="News-image"
-        className="h-64 w-full rounded-2xl object-cover"
+        className="h-\[320px] w-full object-cover"
       />
 
-      <p className="mt-4 text-center text-xs font-semibold uppercase tracking-[2px] text-gray-500">
-        {singleNews.published}
-      </p>
+      <div className="flex flex-1 flex-col px-6 py-5">
 
-      <p className="mt-4 text-center text-2xl font-bold leading-8 text-slate-900 line-clamp-3 min-h-[96px]">
-        {singleNews.title}
-      </p>
+        <p className="text-xs font-bold uppercase tracking-[2px] text-blue-600">
+          {singleNews.published}
+        </p>
 
-      <div className="mt-auto flex items-center justify-between">
-        <button
-          className="cursor-pointer rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition duration-300 hover:bg-blue-600"
-          onClick={() => {
-            isBooked
-              ? removeBookmark(singleNews.id)
-              : addBookmark(singleNews);
-          }}
-        >
-          {isBooked ? "Bookmarked" : "Bookmark"}
-        </button>
+        <h2 className="mt-3 min-h-\[88px] line-clamp-3 text-[21px] font-bold leading-8 text-slate-900">
+          {singleNews.title}
+        </h2>
 
-        <span className="text-4xl">
-          {isBooked ? "📌" : "📍"}
-        </span>
+        <div className="mt-auto">
+
+          <div className="mb-5 flex items-center justify-between">
+
+            <button
+              className={`cursor-pointer rounded-xl px-5 py-3 text-sm font-semibold transition-all duration-300 ${
+                isBooked
+                  ? "border border-red-200 bg-red-50 text-red-600 hover:bg-red-100"
+                  : "bg-slate-900 text-white hover:bg-blue-600"
+              }`}
+              onClick={() => {
+                isBooked
+                  ? removeBookmark(singleNews.id)
+                  : addBookmark(singleNews);
+              }}
+            >
+              {isBooked ? "📌 Bookmarked" : "🔖 Bookmark"}
+            </button>
+
+            <div className="rounded-full bg-slate-100 p-3 text-2xl">
+              {isBooked ? "📌" : "📰"}
+            </div>
+
+          </div>
+
+          <Link
+            to={`/searchnews/${encodeURIComponent(singleNews.id)}`}
+            className="block w-full rounded-xl bg-blue-600 py-3 text-center text-[17px] font-semibold text-white transition-all duration-300 hover:bg-blue-700"
+          >
+            Read Full Article →
+          </Link>
+
+        </div>
+
       </div>
 
-      <div className="mt-5 flex justify-center">
-        <Link
-          to={`/searchnews/${encodeURIComponent(singleNews.id)}`}
-          className="rounded-lg bg-blue-600 px-6 py-3 text-base font-semibold text-white transition duration-300 hover:bg-blue-700"
-        >
-          Read More →
-        </Link>
-      </div>
     </div>
   );
 }

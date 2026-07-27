@@ -11,7 +11,7 @@ function Home() {
       try {
         setLoading(true);
         const response = await fetch(
-          `https://api.currentsapi.services/v1/search?keywords=business&language=${lang}&country=IN&page_size=20`,
+           `https://api.currentsapi.services/v1/latest-news?language=${lang}&country=IN&page_size=20`,
           {
             headers: {
               Authorization:

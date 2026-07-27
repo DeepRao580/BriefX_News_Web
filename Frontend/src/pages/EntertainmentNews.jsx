@@ -12,7 +12,7 @@ function EntertainmentNews() {
       try {
         setLoading(true);
         const response = await fetch(
-         `https://api.currentsapi.services/v1/search?keywords=business&language=${lang}&country=IN&page_size=20`,
+         `https://api.currentsapi.services/v1/search?keywords=entertainment&language=${lang}&country=IN&page_size=20`,
           {
             headers: {
               Authorization:

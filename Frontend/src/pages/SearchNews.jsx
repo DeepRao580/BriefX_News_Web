@@ -2,12 +2,13 @@ import React from "react";
 import { useState, useEffect } from "react";
 import NewsCard from "../components/NewsCard";
 import useDebounce from "../Hook/useDebounce";
-
+import Store from "../store/Store";
 function SearchNews() {
   const [loading, setLoading] = useState(true);
   const [allRecentNews, setAllRecentNews] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const debouncedValue=useDebounce(searchTerm,500)
+  const { lang }=Store()
 
   useEffect(() => {
     const fetchRecentNews = async () => {
@@ -23,7 +24,7 @@ function SearchNews() {
         const response = await fetch(
           `https://api.currentsapi.services/v1/search?keywords=${encodeURIComponent(
             debouncedValue
-          )}&language=en&country=IN&page_size=20`,
+          )}&language=${lang}&country=IN&page_size=20`,
           {
             headers: {
               Authorization:
@@ -43,15 +44,15 @@ function SearchNews() {
     };
 
     fetchRecentNews();
-  }, [debouncedValue]);
+  }, [debouncedValue,lang]);
 
   if (loading) return <h1 className="mt-20 text-center text-3xl font-bold">Loading...</h1>;
 
   return (
-  <div className="min-h-screen mt-20 bg-slate-50">
+  <div className="min-h-screen mt-20">
 
     <div className="mb-16 text-center">
-      <h1 className="text-5xl font-black tracking-tight text-slate-900 md:text-6xl">
+      <h1 className="text-5xl font-black tracking-tight md:text-6xl">
         📰 Search News
       </h1>
     </div>

@@ -9,6 +9,7 @@ function NewsDetail() {
   const [newsDetail, setNewsDetail] = useState(null);
   const [loading, setLoading] = useState(true);
   const isBooked=bookmarks.some((booked)=>booked.id===newsDetail.id)
+   const { lang }=Store()
 
 
   const [aiSummary, setAiSummary] = useState("");
@@ -22,7 +23,7 @@ function NewsDetail() {
         setLoading(true);
 
         const response = await fetch(
-          "https://api.currentsapi.services/v1/latest-news?language=en&country=IN&page_size=20",
+          `https://api.currentsapi.services/v1/latest-news?language=${lang}&country=IN&page_size=20`,
           {
             headers: {
               Authorization:
@@ -44,7 +45,7 @@ function NewsDetail() {
     };
 
     fetchNewsDetail();
-  }, [id]);
+  }, [id,lang]);
 
   const generateSummary = async () => {
   try {

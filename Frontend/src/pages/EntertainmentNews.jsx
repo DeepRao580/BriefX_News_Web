@@ -1,17 +1,18 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import NewsCard from "../components/NewsCard";
-
+import Store from "../store/Store";
 function EntertainmentNews() {
   const [loading, setLoading] = useState(true);
   const [allRecentNews, setAllRecentNews] = useState(null);
+  const { lang }=Store()
 
   useEffect(() => {
     const fetchRecentNews = async () => {
       try {
         setLoading(true);
         const response = await fetch(
-         "https://api.currentsapi.services/v1/search?keywords=entertainment&language=en&country=IN&page_size=20",
+         `https://api.currentsapi.services/v1/search?keywords=business&language=${lang}&country=IN&page_size=20`,
           {
             headers: {
               Authorization:
@@ -31,15 +32,15 @@ function EntertainmentNews() {
     };
 
     fetchRecentNews();
-  }, []);
+  }, [lang]);
 
   if (loading) return "Loading...";
 
 return (
-  <div className="min-h-screen mt-20 bg-slate-50">
+  <div className="min-h-screen mt-20">
 
     <div className="mb-16 text-center">
-      <h1 className="text-5xl font-black tracking-tight text-slate-900 md:text-6xl">
+      <h1 className="text-5xl font-black tracking-tight md:text-6xl">
         📰 Entertainment News
       </h1>
 

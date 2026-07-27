@@ -14,6 +14,12 @@ const Store=create((set)=>({
 
     toggleTheme:()=>set((state)=>({
         theme:state.theme==="light"?"dark":"light"
+    })),
+
+    lang:"en",
+
+    toggleLang:()=>set((state)=>({
+        lang:state.lang==="en"?"hi":"en"
     }))
 }))
 export default Store

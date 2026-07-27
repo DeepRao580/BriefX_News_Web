@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Store from "../store/Store.js";
 
 function Navbar() {
-  const { theme, toggleTheme } = Store();
+  const { theme, toggleTheme,lang,toggleLang } = Store();
   const [currentDate, setCurrentDate] = useState(null);
 
   useEffect(() => {
@@ -36,9 +36,9 @@ function Navbar() {
 
   return (
     <div className="bg-white">
-      <div className="navbar bg-white shadow-sm flex justify-between">
+      <div className="navbar bg-white shadow-sm flex justify-between p-8">
         <div className="flex">
-          <span className="text-black">
+          <span className="text-black font-semibold">
             {currentDate ? currentDate : "Loading..."}
           </span>
         </div>
@@ -185,7 +185,9 @@ function Navbar() {
           </Link>
         </ul>
       </div>
-
+      <button onClick={toggleLang}
+              className="fixed bottom-20 right-6 z-50 rounded-full bg-blue-500 px-6 py-3 text-lg font-semibold text-white shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:bg-blue-700 active:scale-95">
+                {lang === "en" ? "हिंदी" : "English"}</button>
       <button
         onClick={toggleTheme}
         className="fixed bottom-6 right-6 z-50 rounded-full bg-yellow-300 px-6 py-3 text-lg font-semibold text-white shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:bg-yellow-500 active:scale-95"

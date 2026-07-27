@@ -112,13 +112,11 @@ function NewsDetail() {
       </p>
 
       <div className="flex justify-start items-center gap-6">
-        <button className="mt-6 inline-flex cursor-pointer items-center gap-2 rounded-lg bg-red-900 px-4 py-2 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-600"
+        <button className="mt-6 inline-flex cursor-pointer items-center gap-2 rounded-lg bg-yellow-400 px-4 py-2 text-md font-semibold text-white transition-all duration-300 hover:bg-blue-600
+        "
         onClick={()=>{isBooked?removeBookmark(newsDetail.id):addBookmark(newsDetail)}} >
-        {isBooked?"bookmarked":"bookmark"}
+        {isBooked?"bookmarked 🔖":"bookmark 📑"}
         </button>
-        <span className="text-6xl transition-transform duration-300 hover:scale-125">
-          {isBooked ? "📌" : "📍"}
-        </span>
       </div>
 
       <button onClick={generateSummary} disabled={aiLoading} className="mt-6 rounded-lg bg-purple-600 px-4 py-2 text-white hover:bg-purple-700" >
@@ -126,7 +124,8 @@ function NewsDetail() {
       </button>
 
       {aiSummary && (
-      <div className="mt-10 overflow-hidden rounded-3xl border border-white/20 bg-white/80 p-8 shadow-[0_20px_60px_rgba(0,0,0,0.15)] backdrop-blur-xl">
+      <div className="relative mt-10 overflow-hidden rounded-3xl border border-white/20 bg-cover bg-center p-8 shadow-[0_20px_60px_rgba(0,0,0,0.4)]"
+           style={{backgroundImage:"url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1600&q=80')",}}>
         <div className="mb-6 flex items-center gap-4">
           <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-linear-to-br from-violet-500 to-fuchsia-500 text-3xl shadow-lg">
             🤖

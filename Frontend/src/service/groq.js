@@ -23,7 +23,7 @@ export async function generateNewsSummary(title, description) {
 
                     Give:
                    1. Full Detail
-                   2. Summary
+                   2. Summary-
                    3. Facts
                    4. Trend Detection`,
         },

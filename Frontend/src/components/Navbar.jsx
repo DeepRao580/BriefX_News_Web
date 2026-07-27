@@ -56,15 +56,6 @@ function Navbar() {
                 Profile
               </Link>
             </li>
-
-            <li>
-              <Link className="badge">Settings</Link>
-            </li>
-
-            <li>
-              <Link className="badge">Logout</Link>
-            </li>
-
             <li>
               <Link to="/bookmarks" className="badge">Bookmarks</Link>
             </li>

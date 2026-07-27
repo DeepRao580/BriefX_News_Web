@@ -186,7 +186,7 @@ function Navbar() {
         </ul>
       </div>
       <button onClick={toggleLang}
-              className="fixed bottom-20 right-6 z-50 rounded-full bg-blue-500 px-6 py-3 text-lg font-semibold text-white shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:bg-blue-700 active:scale-95">
+              className="fixed bottom-22 right-6 z-50 rounded-full bg-blue-500 px-6 py-3 text-lg font-semibold text-white shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:bg-blue-700 active:scale-95">
                 {lang === "en" ? "हिंदी" : "English"}</button>
       <button
         onClick={toggleTheme}

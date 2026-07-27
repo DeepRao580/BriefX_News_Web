@@ -2,10 +2,8 @@ import React from "react"
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom"
-import useAuthStore from "../store/useAuthStore"
-
 function Login(){
-    const {login}= useAuthStore()
+
     const[loading, setLoading]=useState(false)
     const[formData, setFormData]=useState({
         email:"",
@@ -18,7 +16,7 @@ function Login(){
         if(toast){
             const timerId = setTimeout(()=>{
                 setToast(null)
-            },2000)
+            },3000)
 
             return()=>{clearTimeout(timerId)}
         }
@@ -45,8 +43,6 @@ function Login(){
             if(!response.ok){
                 throw new Error(data.message || "Login Failed")
             }
-
-            login(data.user,data.token)
 
             setToast({message:"Login Successful", type:"success"})
 
@@ -89,9 +85,9 @@ function Login(){
         </div>
 
         <div className="space-y-5">
-          <input type="email" placeholder="Enter your email" name="email" value={formData.email} onChange={handleChange} className="input input-bordered h-12 w-full"/>
+          <input type="email" placeholder="Enter your email" name="email" value={formData.email} onChange={handleChange} className="input input-bordered h-12 w-full bg-white"/>
 
-          <input type="password" placeholder="Enter your password" name="password" value={formData.password} onChange={handleChange} className="input input-bordered h-12 w-full"/>
+          <input type="password" placeholder="Enter your password" name="password" value={formData.password} onChange={handleChange} className="input input-bordered h-12 w-full bg-white"/>
 
           <button type="submit" disabled={loading} className="btn btn-primary h-12 w-full text-base">
             {loading ? (<div className="flex items-center gap-2"><span className="loading loading-spinner loading-sm"></span>

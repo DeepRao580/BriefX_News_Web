@@ -127,10 +127,10 @@ function Navbar() {
       <button onClick={toggleMusic} className="fixed bottom-38 right-6 z-50 rounded-full bg-violet-200 px-6 py-3 text-2xl font-semibold shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:bg-pink-400 active:scale-95">
         {playing ? "⏸️" : "🎵"}</button>
       <div class="intro">
-    <div class="paper">
-        <h1>BREAKING NEWS</h1>
-    </div>
-</div>
+        <div class="paper">
+          <h1>BREAKING NEWS</h1>
+        </div>
+      </div>
         
     </div>
   );

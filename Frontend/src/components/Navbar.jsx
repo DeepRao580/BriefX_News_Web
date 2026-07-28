@@ -3,10 +3,24 @@ import BriefX from "../assets/BriefX_crop.png";
 import { Link } from "react-router-dom";
 import Store from "../store/Store.js";
 import { FaUserCircle } from "react-icons/fa";
-
+import { useRef } from "react";
+import music from "../assets/music.mp3"
 function Navbar() {
   const { theme, toggleTheme,lang,toggleLang } = Store();
   const [currentDate, setCurrentDate] = useState(null);
+  const audioRef = useRef(new Audio(music));
+  const [playing, setPlaying] = useState(false);
+
+  const toggleMusic = () => {
+    audioRef.current.loop=true
+    if (playing) {
+      audioRef.current.pause();
+    } 
+    else {
+      audioRef.current.play();
+    }
+    setPlaying(!playing)
+  }
 
   useEffect(() => {
     const today = new Date();
@@ -109,6 +123,7 @@ function Navbar() {
       <button onClick={toggleTheme} className="fixed bottom-6 right-6 z-50 rounded-full bg-yellow-300 px-6 py-3 text-lg font-semibold text-white shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:bg-yellow-500 active:scale-95">
         {theme === "light" ? "Dark" : "Light"}
       </button>
+      <button onClick={toggleMusic} className="fixed bottom-40 right-6 z-50 rounded-full bg-red-500 px-6 py-3 text-lg font-semibold shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:bg-red-700 active:scale-95">{playing ? "⏸️" : "🎵"}</button>
     </div>
   );
 }

@@ -17,12 +17,13 @@ function Logout() {
   }, [toast]);
 
   const handleLogout = () => {
-    logout();
     setToast({
       type: "success",
       message: "Logged out successfully!",
     });
-    setTimeout(() => {navigate("/login")}, 2000);
+    setTimeout(() => {
+      logout()
+      navigate("/login")}, 2000);
   };
 
   return (

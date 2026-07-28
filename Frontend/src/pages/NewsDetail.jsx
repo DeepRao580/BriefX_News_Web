@@ -8,7 +8,7 @@ function NewsDetail() {
   const { bookmarks,addBookmark,removeBookmark }=Store();
   const [newsDetail, setNewsDetail] = useState(null);
   const [loading, setLoading] = useState(true);
-  const isBooked=bookmarks.some((booked)=>booked.id===newsDetail.id)
+  const isBooked=bookmarks.some((booked)=>booked.id===newsDetail?.id)
    const { lang }=Store()
 
 
@@ -33,9 +33,9 @@ function NewsDetail() {
         );
 
         const result = await response.json();
-
+        console.log(result)
         const article = result.news.find((item) => item.id === id);
-
+        console.log(article)
         setNewsDetail(article);
       } catch (error) {
         console.log("Error in fetching details of news", error);
@@ -154,6 +154,7 @@ function NewsDetail() {
       >
         ← Back to Home
       </Link>
+      <div><a href={newsDetail.url}>Detail</a></div>
     </div>
   );}
 }

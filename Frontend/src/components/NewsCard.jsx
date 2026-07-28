@@ -6,7 +6,7 @@ function NewsCard({ singleNews }) {
   const { bookmarks, addBookmark, removeBookmark } = Store();
 
   const isBooked = bookmarks.some(
-    (booked) => booked.id === singleNews.id
+    (booked) => booked.id === singleNews?.id
   );
 
   return (
@@ -20,8 +20,9 @@ function NewsCard({ singleNews }) {
 
       <div className="flex flex-1 flex-col px-6 py-5">
 
-        <p className="text-xs font-bold uppercase tracking-[2px] text-blue-600">
+        <p className="text-xs font-bold uppercase tracking-[2px] text-blue-600 flex justify-between">
           {singleNews.published}
+          <div><a href={singleNews.url} className="text-red-500">More Info</a></div>
         </p>
 
         <h2 className="mt-3 min-h-\[88px] line-clamp-3 text-[21px] font-bold leading-8 text-slate-900">
@@ -59,7 +60,6 @@ function NewsCard({ singleNews }) {
           >
             Read Full Article →
           </Link>
-
         </div>
 
       </div>

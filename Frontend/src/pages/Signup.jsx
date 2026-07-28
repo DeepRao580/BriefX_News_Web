@@ -26,7 +26,7 @@ function Signup() {
   }, [toast]);
 
   const handleChange = (e) => {
-    return setFormData({...formData,[e.target.name]: e.target.value,});
+    return setFormData({...formData,[e.target.name]: e.target.value});
   };
 
   const handleSubmit = async (e) => {

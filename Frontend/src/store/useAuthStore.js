@@ -14,7 +14,12 @@ const useAuthStore=create(
         logout: ()=>set((state)=>({
             user:null,
             token:null,
+        })),
+
+        refresh:(updatedUser)=>set((state)=>({
+            user:updatedUser
         }))
+
     }),
     {name:"loginStorage"}
 ))

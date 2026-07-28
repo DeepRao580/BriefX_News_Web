@@ -27,7 +27,9 @@ function Logout() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat px-4"
+         style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                  url("https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=2000&q=80")`,}}>
       <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl p-8 text-center">
         <h2 className="text-3xl font-bold text-gray-800 mb-3">
           Logout

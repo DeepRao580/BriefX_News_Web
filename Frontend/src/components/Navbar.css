@@ -1,0 +1,139 @@
+/* ===========================
+   INTRO ONLY
+   =========================== */
+
+.intro {
+  position: fixed;
+  inset: 0;
+  background: #050505;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  z-index: 99999;
+  animation: introEnd 5s forwards;
+}
+
+.intro .paper {
+  width: 700px;
+  height: 420px;
+  background: linear-gradient(135deg, #f7f7f7, #d9d9d9);
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  transform: scale(0) rotate(-15deg);
+  box-shadow:
+    0 0 40px rgba(255,255,255,.15),
+    0 20px 60px rgba(0,0,0,.7);
+  animation: paperOpen 5s forwards;
+}
+
+/* Fold line */
+.intro .paper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 3px;
+  height: 100%;
+  background: rgba(0,0,0,.15);
+  transform: translateX(-50%);
+}
+
+/* Fake newspaper lines */
+.intro .paper::after {
+  content: "";
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  width: 220px;
+  height: 10px;
+  background: #999;
+  box-shadow:
+    0 25px #bbb,
+    0 50px #bbb,
+    0 75px #bbb,
+    260px 0 #bbb,
+    260px 25px #bbb,
+    260px 50px #bbb,
+    260px 75px #bbb;
+}
+
+.intro .paper h1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 70px;
+  font-weight: 900;
+  color: #d40000;
+  letter-spacing: 8px;
+  text-align: center;
+  text-shadow:
+    0 0 10px red,
+    0 0 25px red,
+    0 0 45px rgba(255,0,0,.5);
+  animation: glow 1s infinite alternate;
+}
+
+@keyframes paperOpen {
+
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(-15deg);
+  }
+
+  20% {
+    opacity: 1;
+    transform: scale(.5) rotate(-8deg);
+  }
+
+  40% {
+    transform: scale(1) rotate(0deg);
+  }
+
+  75% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(5);
+  }
+
+}
+
+@keyframes glow {
+
+  from {
+    text-shadow:
+      0 0 10px red,
+      0 0 20px red;
+  }
+
+  to {
+    text-shadow:
+      0 0 20px red,
+      0 0 40px red,
+      0 0 70px red;
+  }
+
+}
+
+@keyframes introEnd {
+
+  0%, 95% {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+}

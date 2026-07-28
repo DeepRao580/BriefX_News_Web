@@ -5,6 +5,7 @@ import Store from "../store/Store.js";
 import { FaUserCircle } from "react-icons/fa";
 import { useRef } from "react";
 import music from "../assets/music.mp3"
+import "./Navbar.css"
 function Navbar() {
   const { theme, toggleTheme,lang,toggleLang } = Store();
   const [currentDate, setCurrentDate] = useState(null);
@@ -123,7 +124,14 @@ function Navbar() {
       <button onClick={toggleTheme} className="fixed bottom-6 right-6 z-50 rounded-full bg-yellow-300 px-6 py-3 text-lg font-semibold text-white shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:bg-yellow-500 active:scale-95">
         {theme === "light" ? "Dark" : "Light"}
       </button>
-      <button onClick={toggleMusic} className="fixed bottom-38 right-6 z-50 rounded-full bg-violet-200 px-6 py-3 text-2xl font-semibold shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:bg-pink-400 active:scale-95">{playing ? "⏸️" : "🎵"}</button>
+      <button onClick={toggleMusic} className="fixed bottom-38 right-6 z-50 rounded-full bg-violet-200 px-6 py-3 text-2xl font-semibold shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:bg-pink-400 active:scale-95">
+        {playing ? "⏸️" : "🎵"}</button>
+      <div class="intro">
+    <div class="paper">
+        <h1>BREAKING NEWS</h1>
+    </div>
+</div>
+        
     </div>
   );
 }

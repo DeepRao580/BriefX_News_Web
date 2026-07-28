@@ -1,6 +1,6 @@
 import { create } from "zustand"
 import { persist } from "zustand/middleware"
-const Store=create((set)=>({
+const Store=create(persist((set)=>({
     
     bookmarks:[],
 
@@ -22,5 +22,5 @@ const Store=create((set)=>({
     toggleLang:()=>set((state)=>({
         lang:state.lang==="en"?"hi":"en"
     }))
-}))
+})))
 export default Store

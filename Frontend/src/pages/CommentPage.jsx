@@ -4,8 +4,6 @@ import Store from "../store/Store";
 import useAuthStore from "../store/useAuthStore"
 function Comment() {
   const { comments } = Store();
-  const { token }=Store()
-
   return (
     <div className="min-h-screen px-16 py-16">
       <h1 className="text-5xl font-bold text-center mb-12">
@@ -24,6 +22,7 @@ function Comment() {
 function CommentCard({ news }) {
   const [allComments, setAllComments] = useState([]);
   const [comment, setComment] = useState("");
+  const { token }=Store()
 
   useEffect(() => {
     const fetchComments = async () => {

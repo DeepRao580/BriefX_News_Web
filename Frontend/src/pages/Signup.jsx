@@ -38,6 +38,17 @@ function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+     const emailFormat =/^[a-zA-Z0-9._%+-]+@(gmail\.com|yahoo\.com|outlook\.com|bvcoe\.edu\.in)$/;
+
+    if (!emailFormat.test(formData.email)) {
+    setToast({
+      message: "Please enter a valid Gmail address",
+      type: "error",
+    });
+    return;
+  }
+
+
     try {
       setLoading(true);
       const response = await fetch("http://localhost:5000/api/auth/signup",

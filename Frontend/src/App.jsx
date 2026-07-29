@@ -19,6 +19,7 @@ import Profile from "./pages/Profile"
 import ProtectedRoute from "./components/ProtectedRoute"
 import PublicRoute from "./components/PublicRoute"
 import Logout from "./pages/Logout"
+import CommentPage from "./pages/CommentPage"
 function App(){
     const { theme }=Store()
     return(
@@ -38,6 +39,7 @@ function App(){
                     <Route path="/bookmarks" element={<ProtectedRoute><Bookmark/></ProtectedRoute>}/>
                     <Route path="/profile" element={<ProtectedRoute><Profile/></ProtectedRoute>}/>
                     <Route path="/logout" element={<ProtectedRoute><Logout/></ProtectedRoute>}/>
+                    <Route path="/comment" element={<ProtectedRoute><CommentPage/></ProtectedRoute>}/>
                 </Route>
                 <Route path="/signup" element={<PublicRoute><Signup/></PublicRoute>}/>
                 <Route path="/login" element={<PublicRoute><Login/></PublicRoute>}/>

@@ -145,6 +145,12 @@ function Navbar() {
                 Bookmarks
               </Link>
             </li>
+
+             <li>
+              <Link to="/comment" className="badge">
+                Comments Page
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

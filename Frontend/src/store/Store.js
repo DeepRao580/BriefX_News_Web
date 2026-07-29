@@ -11,6 +11,18 @@ const Store=create(persist((set)=>({
         bookmarks:state.bookmarks.filter((news)=>news.id!==id)
     })),
 
+    comments: [],
+
+    addComment: (newComment) =>
+      set((state) => ({
+        comments: [...state.comments, newComment],
+      })),
+
+    removeComment: (id) =>
+      set((state) => ({
+        comments: state.comments.filter((comment) => comment.id !== id),
+      })),
+
     theme:"light",
 
     toggleTheme:()=>set((state)=>({

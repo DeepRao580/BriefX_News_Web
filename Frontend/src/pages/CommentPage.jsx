@@ -25,10 +25,8 @@ function CommentCard({ news }) {
   const [allComments, setAllComments] = useState([]);
   const [comment, setComment] = useState("");
 
-  // ✅ Token auth store se lo
   const { token } = useAuthStore();
 
-  // ✅ useEffect ke bahar rakha
   const fetchComments = async () => {
     try {
       const response = await fetch(
@@ -81,7 +79,7 @@ function CommentCard({ news }) {
 
       if (response.ok) {
         setComment("");
-        fetchComments(); // ✅ comments refresh
+        fetchComments();
       }
     } catch (error) {
       console.log(error);

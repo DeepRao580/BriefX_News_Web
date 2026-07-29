@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Store from "../store/Store.js"
 import { generateNewsSummary } from "../service/groq";
+import { dbPromise } from "../utilities/indexDB";
 
 
 function NewsDetail() {
@@ -21,6 +22,16 @@ function NewsDetail() {
     const fetchNewsDetail = async () => {
       try {
         setLoading(true);
+        if (!navigator.onLine) {
+          const db = await dbPromise;
+
+          const article = await db.get("news", id);
+
+          setNewsDetail(article);
+          setLoading(false);
+
+          return;
+        }
 
         const response = await fetch(
           `https://api.currentsapi.services/v1/latest-news?language=${lang}&country=IN&page_size=20`,

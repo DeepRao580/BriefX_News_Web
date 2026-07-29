@@ -3,6 +3,12 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 function Signup() {
+  const email= async()=>{
+  const verifier = require('node-email-verifier');
+  const result = await verifier('ravi@abc.com', { checkMx: true });
+  console.log(result.valid);}// false if MX records are missing   
+
+
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);

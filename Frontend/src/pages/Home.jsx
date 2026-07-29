@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import NewsCard from "../components/NewsCard";
 import Store from "../store/Store";
+import { dbPromise } from "../utilities/indexDB";
 
 function Home() {
   const [loading, setLoading] = useState(true);
@@ -12,6 +13,13 @@ function Home() {
     const fetchRecentNews = async () => {
       try {
         setLoading(true);
+
+        if (!navigator.onLine) {
+        const db = await dbPromise;
+        const cachedNews = await db.getAll("news");
+        console.log("Offline News:", cachedNews);
+        setAllRecentNews(cachedNews);
+        return;}
 
         const response = await fetch(
           `https://api.currentsapi.services/v1/latest-news?language=${lang}&country=IN&page_size=20`,
@@ -25,6 +33,13 @@ function Home() {
         const data = await response.json();
         console.log(data.news);
         setAllRecentNews(data.news);
+        const db = await dbPromise;
+
+        const tx = db.transaction("news", "readwrite");
+        for (const article of data.news) {
+          await tx.store.put(article);
+        }
+        await tx.done;
       } catch (error) {
         console.error("Error in fetching recent news", error);
       } finally {

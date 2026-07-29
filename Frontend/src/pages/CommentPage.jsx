@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import NewsCard from "../components/NewsCard";
 import Store from "../store/Store";
-import useAuthStore from "../store/useAuthStore"
+import useAuthStore from "../store/useAuthStore";
+
 function Comment() {
   const { comments } = Store();
+
   return (
     <div className="min-h-screen px-16 py-16">
       <h1 className="text-5xl font-bold text-center mb-12">
@@ -22,10 +24,12 @@ function Comment() {
 function CommentCard({ news }) {
   const [allComments, setAllComments] = useState([]);
   const [comment, setComment] = useState("");
-  const { token }=Store()
 
-  useEffect(() => {
-    const fetchComments = async () => {
+  // ✅ Token auth store se lo
+  const { token } = useAuthStore();
+
+  // ✅ useEffect ke bahar rakha
+  const fetchComments = async () => {
     try {
       const response = await fetch(
         `http://localhost:5000/api/comments/${news.id}`,
@@ -34,21 +38,26 @@ function CommentCard({ news }) {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
-          }
+          },
         }
       );
 
       const data = await response.json();
+      console.log(data);
 
-      setAllComments(data.comments);
+      setAllComments(data.comments || []);
     } catch (error) {
       console.log(error);
     }
   };
+
+  useEffect(() => {
     fetchComments();
   }, []);
 
   const handleComment = async () => {
+    if (!comment.trim()) return;
+
     try {
       const response = await fetch(
         "http://localhost:5000/api/comments/addcomment",
@@ -67,13 +76,16 @@ function CommentCard({ news }) {
 
       const data = await response.json();
 
-      if (data.success) {
+      console.log(response.status);
+      console.log(data);
+
+      if (response.ok) {
         setComment("");
-        fetchComments();
+        fetchComments(); // ✅ comments refresh
       }
     } catch (error) {
       console.log(error);
-    } 
+    }
   };
 
   return (
@@ -83,20 +95,32 @@ function CommentCard({ news }) {
       <div className="mt-5 border rounded-xl p-4">
         <h2 className="font-bold text-xl mb-4">💬 Comments</h2>
 
-        {allComments.map((item) => (
-          <div
-            className="bg-gray-100 rounded-lg p-3 mb-2"
-          >
-            {item.comment}
-          </div>
-        ))}
+        {allComments.length > 0 ? (
+          allComments.map((item, index) => (
+            <div
+              key={index}
+              className="bg-gray-100 text-black rounded-lg p-3 mb-2"
+            >
+              {item.comment}
+            </div>
+          ))
+        ) : (
+          <p>No comments yet.</p>
+        )}
 
         <div className="flex gap-2 mt-4">
-          <input type="text" value={comment} onChange={(e) => setComment(e.target.value)} placeholder="Write a comment..."
+          <input
+            type="text"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+            placeholder="Write a comment..."
             className="flex-1 border rounded-lg p-2"
           />
 
-          <button onClick={handleComment} className="bg-blue-600 text-white px-4 rounded-lg">
+          <button
+            onClick={handleComment}
+            className="bg-blue-600 text-white px-4 rounded-lg"
+          >
             Post
           </button>
         </div>

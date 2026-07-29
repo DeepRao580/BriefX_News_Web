@@ -71,50 +71,88 @@ function Login(){
     }
 
 
-    return (
-    <div
-    className="flex min-h-screen items-center justify-center bg-cover bg-center bg-no-repeat px-4"
+   return (
+  <div
+    className="flex min-h-screen items-center justify-center bg-cover bg-center bg-no-repeat px-4 py-8"
     style={{
       backgroundImage: `
       linear-gradient(rgba(255,255,255,0.08), rgba(255,255,255,0.08)),
       url("https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=2200&q=80")
     `,
-    }}>
-    <form onSubmit={handleSubmit}>
+    }}
+  >
+    <form onSubmit={handleSubmit} className="w-full flex justify-center">
       <div
-        className="w-full max-w-md rounded-3xl bg-cover bg-center p-8 shadow-2xl" style={{backgroundImage: `linear-gradient(rgba(255,255,255,0.30), rgba(255,255,255,0.30)),
+        className="w-full max-w-sm sm:max-w-md md:max-w-lg rounded-3xl bg-cover bg-center p-6 sm:p-8 shadow-2xl"
+        style={{
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.30), rgba(255,255,255,0.30)),
           url("https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1200&q=80")
         `,
-        }}>
+        }}
+      >
         <div className="mb-8 text-center">
-        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-600 text-3xl text-white shadow-lg">
+          <div className="mx-auto mb-4 flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-blue-600 text-2xl sm:text-3xl text-white shadow-lg">
             🔐
+          </div>
+
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-800">
+            Welcome Back
+          </h2>
+
+          <p className="mt-2 text-sm sm:text-base text-gray-700">
+            Login to continue with BriefX
+          </p>
         </div>
-
-        <h2 className="text-3xl font-bold text-gray-800">Welcome Back</h2>
-
-        <p className="mt-2 text-black-500">Login to continue with BriefX</p>
-        </div>
-
         <div className="space-y-5">
-          <input type="email" placeholder="Enter your email" name="email" value={formData.email} onChange={handleChange} className="input input-bordered h-12 w-full bg-white"/>
+          <input
+            type="email"
+            placeholder="Enter your email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            className="input input-bordered h-12 w-full bg-white"
+          />
 
-          <input type="password" placeholder="Enter your password" name="password" value={formData.password} onChange={handleChange} className="input input-bordered h-12 w-full bg-white"/>
+          <input
+            type="password"
+            placeholder="Enter your password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            className="input input-bordered h-12 w-full bg-white"
+          />
 
-          <button type="submit" disabled={loading} className="btn btn-primary h-12 w-full text-base">
-            {loading ? (<div className="flex items-center gap-2"><span className="loading loading-spinner loading-sm"></span>
-                Logging in...</div>) : ("Login")}
+          <button
+            type="submit"
+            disabled={loading}
+            className="btn btn-primary h-12 w-full text-base"
+          >
+            {loading ? (
+              <div className="flex items-center gap-2">
+                <span className="loading loading-spinner loading-sm"></span>
+                Logging in...
+              </div>
+            ) : (
+              "Login"
+            )}
           </button>
         </div>
 
-        <div className="mt-6 text-center text-lg text-gray-600">
+        <div className="mt-6 text-center text-sm sm:text-base lg:text-lg text-gray-700">
           Don't have an account?
-          <span className="ml-2 cursor-pointer font-semibold text-blue-500 hover:underline">
-          <Link to="/signup">Sign Up</Link>
+          <span className="ml-2 font-semibold text-blue-500 hover:underline">
+            <Link to="/signup">Sign Up</Link>
           </span>
         </div>
+
         {toast && (
-          <div className={`alert mt-6 ${toast.type === "success"? "alert-success": "alert-error"}`}>
+          <div
+            className={`alert mt-6 ${
+              toast.type === "success"
+                ? "alert-success"
+                : "alert-error"
+            }`}
+          >
             <span>{toast.message}</span>
           </div>
         )}

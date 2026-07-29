@@ -140,61 +140,134 @@ console.log(data);
     setPass({ oldPassword: "",newPassword: ""});
   };
   
-  return(
-    <div className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat px-4"
-        style={{backgroundImage: `linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
-              url("https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=2200&q=80")`,}}>
-              <div className="w-full max-w-xl rounded-3xl border border-white/20 bg-white/15 backdrop-blur-xl shadow-2xl p-8">
+  return (
+  <div
+    className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat px-4 py-8"
+    style={{
+      backgroundImage: `linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+      url("https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=2200&q=80")`,
+    }}
+  >
+    <div className="w-full max-w-sm sm:max-w-md lg:max-w-xl rounded-3xl border border-white/20 bg-white/15 backdrop-blur-xl shadow-2xl p-6 sm:p-8">
 
-                <div className="text-center mb-7">
-                  <div className="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-blue-600 text-3xl text-white shadow-lg">
-                    👤
-                  </div>
-                  <h1 className="text-3xl font-bold text-white">My Profile</h1>
-                  <p className="text-gray-200 mt-2">Manage your BriefX account</p>
-                </div>
+      <div className="mb-7 text-center">
+        <div className="mx-auto mb-3 flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-blue-600 text-2xl sm:text-3xl text-white shadow-lg">
+          👤
+        </div>
 
-                <div className="space-y-5">
+        <h1 className="text-2xl sm:text-3xl font-bold text-white">
+          My Profile
+        </h1>
 
-                  <div>
-                    <p className="text-sm text-gray-300 mb-1">Full Name</p>
-                    <div className="rounded-xl bg-white/20 p-3 text-lg font-semibold text-white">{data?.name}</div>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-300 mb-1">Email</p>
-                    <div className="rounded-xl bg-white/20 p-3 text-lg font-semibold text-white">{data?.email}</div>
-                  </div>
-                </div>
+        <p className="mt-2 text-sm sm:text-base text-gray-200">
+          Manage your BriefX account
+        </p>
+      </div>
 
-                <div className="mt-7 flex gap-4">
-                  <button onClick={handleEdit} className="btn btn-primary flex-1" >Edit Profile</button>
-                  <button onClick={handleEditPassword} className="btn btn-warning flex-1">Change Password</button>
-                </div>
+      <div className="space-y-5">
 
-                {isEditing && (
-                  <div className="mt-6 rounded-2xl bg-white/10 border border-white/20 p-5">
-                    <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Enter New Name"
-                    className="input input-bordered w-full bg-white"/>
-                    <button onClick={handleSave} className="btn btn-success w-full mt-4" >Save Changes</button>
-                  </div>)}
+        <div>
+          <p className="mb-1 text-sm text-gray-300">
+            Full Name
+          </p>
 
-                {updatingPassword && (
-                  <div className="mt-6 rounded-2xl bg-white/10 border border-white/20 p-5 space-y-4">
-                    <input type="password" name="oldPassword" value={pass.oldPassword} onChange={handleChangePassword} placeholder="Current Password"
-                    className="input input-bordered w-full bg-white"/>
-                    <input type="password" name="newPassword" value={pass.newPassword} onChange={handleChangePassword} placeholder="New Password"
-                    className="input input-bordered w-full bg-white"/>
-                    <button onClick={handleSavePassword} className="btn btn-success w-full">Update Password</button>
-                  </div>)}
+          <div className="rounded-xl bg-white/20 p-3 text-base sm:text-lg font-semibold text-white break-words">
+            {data?.name}
+          </div>
+        </div>
 
-                {toast && (
-                  <div className={`alert mt-6 ${toast.type === "success"? "alert-success": "alert-error"}`}>
-                    <span>{toast.message}</span>
-                  </div>)}
+        <div>
+          <p className="mb-1 text-sm text-gray-300">
+            Email
+          </p>
 
-              </div>
+          <div className="rounded-xl bg-white/20 p-3 text-sm sm:text-lg font-semibold text-white break-all">
+            {data?.email}
+          </div>
+        </div>
+
+      </div>
+
+      <div className="mt-7 flex flex-col sm:flex-row gap-4">
+        <button
+          onClick={handleEdit}
+          className="btn btn-primary flex-1"
+        >
+          Edit Profile
+        </button>
+
+        <button
+          onClick={handleEditPassword}
+          className="btn btn-warning flex-1"
+        >
+          Change Password
+        </button>
+      </div>
+
+      {isEditing && (
+        <div className="mt-6 rounded-2xl border border-white/20 bg-white/10 p-5">
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder="Enter New Name"
+            className="input input-bordered w-full bg-white"
+          />
+
+          <button
+            onClick={handleSave}
+            className="btn btn-success mt-4 w-full"
+          >
+            Save Changes
+          </button>
+        </div>
+      )}
+
+      {updatingPassword && (
+        <div className="mt-6 space-y-4 rounded-2xl border border-white/20 bg-white/10 p-5">
+          <input
+            type="password"
+            name="oldPassword"
+            value={pass.oldPassword}
+            onChange={handleChangePassword}
+            placeholder="Current Password"
+            className="input input-bordered w-full bg-white"
+          />
+
+          <input
+            type="password"
+            name="newPassword"
+            value={pass.newPassword}
+            onChange={handleChangePassword}
+            placeholder="New Password"
+            className="input input-bordered w-full bg-white"
+          />
+
+          <button
+            onClick={handleSavePassword}
+            className="btn btn-success w-full"
+          >
+            Update Password
+          </button>
+        </div>
+      )}
+
+      {toast && (
+        <div
+          className={`alert mt-6 ${
+            toast.type === "success"
+              ? "alert-success"
+              : "alert-error"
+          }`}
+        >
+          <span>{toast.message}</span>
+        </div>
+      )}
+
     </div>
-  )
+  </div>
+);
 }
 
 export default Profile;

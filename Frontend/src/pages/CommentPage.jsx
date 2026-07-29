@@ -7,18 +7,18 @@ function Comment() {
   const { comments } = Store();
 
   return (
-    <div className="min-h-screen px-16 py-16">
-      <h1 className="text-5xl font-bold text-center mb-12">
-        📑 Comments Page
-      </h1>
+  <div className="min-h-screen px-4 sm:px-8 lg:px-16 py-8 sm:py-12 lg:py-16">
+    <h1 className="mb-8 sm:mb-12 text-center text-3xl sm:text-4xl lg:text-5xl font-bold">
+      📑 Comments Page
+    </h1>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-        {comments.map((news) => (
-          <CommentCard key={news.id} news={news} />
-        ))}
-      </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
+      {comments.map((news) => (
+        <CommentCard key={news.id} news={news} />
+      ))}
     </div>
-  );
+  </div>
+);
 }
 
 function CommentCard({ news }) {
@@ -87,44 +87,50 @@ function CommentCard({ news }) {
   };
 
   return (
-    <div>
-      <NewsCard singleNews={news} />
+  <div className="w-full">
+    <NewsCard singleNews={news} />
 
-      <div className="mt-5 border rounded-xl p-4">
-        <h2 className="font-bold text-xl mb-4">💬 Comments</h2>
+    <div className="mt-5 rounded-xl border p-4 sm:p-5">
+      <h2 className="mb-4 text-lg sm:text-xl font-bold">
+        💬 Comments
+      </h2>
 
+      <div className="max-h-64 overflow-y-auto">
         {allComments.length > 0 ? (
           allComments.map((item, index) => (
             <div
               key={index}
-              className="bg-gray-100 text-black rounded-lg p-3 mb-2"
+              className="mb-2 rounded-lg bg-gray-100 p-3 text-sm sm:text-base text-black .break-words"
             >
               {item.comment}
             </div>
           ))
         ) : (
-          <p>No comments yet.</p>
+          <p className="text-sm sm:text-base">
+            No comments yet.
+          </p>
         )}
+      </div>
 
-        <div className="flex gap-2 mt-4">
-          <input
-            type="text"
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
-            placeholder="Write a comment..."
-            className="flex-1 border rounded-lg p-2"
-          />
+      <div className="mt-4 flex flex-col sm:flex-row gap-3">
+        <input
+          type="text"
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+          placeholder="Write a comment..."
+          className="flex-1 rounded-lg border p-3"
+        />
 
-          <button
-            onClick={handleComment}
-            className="bg-blue-600 text-white px-4 rounded-lg"
-          >
-            Post
-          </button>
-        </div>
+        <button
+          onClick={handleComment}
+          className="rounded-lg bg-blue-600 px-5 py-3 text-white hover:bg-blue-700 transition w-full sm:w-auto"
+        >
+          Post
+        </button>
       </div>
     </div>
-  );
+  </div>
+);
 }
 
 export default Comment;

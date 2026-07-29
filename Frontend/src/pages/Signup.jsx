@@ -73,60 +73,101 @@ function Signup() {
   };
 
   return (
- <div
-  className="flex min-h-screen items-center justify-center bg-cover bg-center bg-no-repeat px-4"
-  style={{
-    backgroundImage: `
+  <div
+    className="flex min-h-screen items-center justify-center bg-cover bg-center bg-no-repeat px-4 py-8"
+    style={{
+      backgroundImage: `
       linear-gradient(rgba(255,255,255,0.08), rgba(255,255,255,0.08)),
       url("https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=2200&q=80")
-    `,}}>
-      <form>
-      <div className="w-full max-w-md rounded-3xl p-8 shadow-2xl bg-cover bg-center"
-           style={{
-                backgroundImage: `linear-gradient(rgba(255,255,255,0.30), rgba(255,255,255,0.30)),
-                url("https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1200&q=80")`,}}>
+    `,
+    }}
+  >
+    <form onSubmit={handleSubmit} className="w-full flex justify-center">
+      <div
+        className="w-full max-w-sm sm:max-w-md md:max-w-lg rounded-3xl p-6 sm:p-8 shadow-2xl bg-cover bg-center"
+        style={{
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.30), rgba(255,255,255,0.30)),
+          url("https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1200&q=80")`,
+        }}
+      >
         <div className="mb-8 text-center">
-          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-600 text-3xl text-white shadow-lg">
+          <div className="mx-auto mb-4 flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-blue-600 text-2xl sm:text-3xl text-white shadow-lg">
             📰
           </div>
-          <h2 className="text-3xl font-bold text-gray-800">
+
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-800">
             Create Account
           </h2>
-          <p className="mt-2 text-gray-500">
+
+          <p className="mt-2 text-sm sm:text-base text-gray-700">
             Register yourself to continue with BriefX
           </p>
         </div>
+
         <div className="space-y-5">
-          <input type="text" placeholder="Enter your name" name="name" value={formData.name} onChange={handleChange}
+          <input
+            type="text"
+            placeholder="Enter your name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
             className="input input-bordered w-full h-12"
           />
-          <input type="email" placeholder="Enter your email" name="email" value={formData.email} onChange={handleChange}
+
+          <input
+            type="email"
+            placeholder="Enter your email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
             className="input input-bordered w-full h-12"
           />
-          <input type="password" placeholder="Enter your password" name="password" value={formData.password} onChange={handleChange}
+
+          <input
+            type="password"
+            placeholder="Enter your password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
             className="input input-bordered w-full h-12"
           />
-          <button onClick={handleSubmit} disabled={loading} className="btn btn-primary w-full h-12 text-base">
-            {loading ? (<div><span className="loading loading-spinner loading-sm"></span>Creating...</div>) : ("Create Account")}
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="btn btn-primary w-full h-12 text-base"
+          >
+            {loading ? (
+              <div className="flex items-center gap-2">
+                <span className="loading loading-spinner loading-sm"></span>
+                Creating...
+              </div>
+            ) : (
+              "Create Account"
+            )}
           </button>
         </div>
 
-        <div className="mt-6 text-center text-lg text-gray-600">
+        <div className="mt-6 text-center text-sm sm:text-base lg:text-lg text-gray-700">
           Already have an account?
-          <span className="ml-2 cursor-pointer font-semibold text-blue-500 hover:underline">
+          <span className="ml-2 font-semibold text-blue-500 hover:underline">
             <Link to="/login">Login</Link>
           </span>
         </div>
 
         {toast && (
-          <div className={`alert mt-6 ${toast.type === "success"? "alert-success": "alert-error"}`}>
+          <div
+            className={`alert mt-6 ${
+              toast.type === "success"
+                ? "alert-success"
+                : "alert-error"
+            }`}
+          >
             <span>{toast.message}</span>
           </div>
         )}
-
       </div>
-      </form>
-    </div>
-  );
+    </form>
+  </div>);
 }
 export default Signup;

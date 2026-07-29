@@ -3,21 +3,15 @@ import { useNavigate, Link } from "react-router-dom";
 import Store from "../store/Store.js";
 
 
-function NewsCard({ singleNews }) {
+function NewsCard({ singleNews,category }) {
   const {
     bookmarks,
     addBookmark,
     removeBookmark,
-    comments,
-    addComment,
-    removeComment,
     theme,
   } = Store();
 
   const isBooked = bookmarks.some(
-    (booked) => booked.id === singleNews?.id
-  );
-  const isComment = comments.some(
     (booked) => booked.id === singleNews?.id
   );
 
@@ -73,15 +67,6 @@ function NewsCard({ singleNews }) {
                 }}
               >
                 {isBooked ? "📌 Bookmarked" : "🔖 Bookmark"}
-              </button>
-
-              <button
-                onClick={() => {
-                  isComment?removeComment(singleNews.id):addComment(singleNews);
-                }}
-                className="rounded-xl bg-green-600 px-4 py-2 text-xs font-semibold text-white transition-all duration-300 hover:bg-green-700 sm:px-5 sm:py-3 sm:text-sm"
-              >
-                {isComment?"💬 DeleteComment":"💬 Comment"}
               </button>
             </div>
 

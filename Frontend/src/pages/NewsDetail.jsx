@@ -6,11 +6,12 @@ import { getOfflineArticle } from "../store/offlineStore.js";
 
 
 function NewsDetail() {
-  const { bookmarks,addBookmark,removeBookmark }=Store();
+  const {bookmarks,addBookmark,removeBookmark,comments,addComment,removeComment,theme} = Store();
   const [newsDetail, setNewsDetail] = useState(null);
   const [loading, setLoading] = useState(true);
   const isBooked=bookmarks.some((booked)=>booked.id===newsDetail?.id)
-   const { lang }=Store()
+  const isComment = comments.some((booked) => booked.id === newsDetail?.id);
+  const { lang }=Store()
 
 
   const [aiSummary, setAiSummary] = useState("");
@@ -119,11 +120,15 @@ function NewsDetail() {
         📅 {newsDetail?.published}
       </p>
 
-      <div className="flex justify-start items-center gap-6">
-        <button className="mt-6 inline-flex cursor-pointer items-center gap-2 rounded-lg bg-yellow-400 px-4 py-2 text-md font-semibold text-white transition-all duration-300 hover:bg-blue-600
-        "
-        onClick={()=>{isBooked?removeBookmark(newsDetail.id):addBookmark(newsDetail)}} >
-        {isBooked?"bookmarked 🔖":"bookmark 📑"}
+      <div className="mt-6 flex flex-col items-start gap-4">
+        <button className="inline-flex cursor-pointer items-center gap-2 rounded-lg bg-yellow-400 px-4 py-2 text-md font-semibold text-white transition-all duration-300 hover:bg-yellow-800"
+                onClick={() => {isBooked? removeBookmark(newsDetail.id): addBookmark(newsDetail);}}>
+                {isBooked ? "Bookmarked 🔖" : "Bookmark 📑"}
+        </button>
+
+        <button onClick={() => {isComment? removeComment(newsDetail.id): addComment(newsDetail);}}
+                className="inline-flex items-center gap-2 rounded-xl bg-green-400 px-4 py-2 text-sm font-semibold text-white transition-all duration-300 hover:bg-green-800">
+                {isComment ? "💬 Delete Comment" : "💬 Comment"}
         </button>
       </div>
 

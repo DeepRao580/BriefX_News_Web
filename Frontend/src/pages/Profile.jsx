@@ -171,7 +171,7 @@ console.log(data);
             Full Name
           </p>
 
-          <div className="rounded-xl bg-white/20 p-3 text-base sm:text-lg font-semibold text-white break-words">
+          <div className="rounded-xl bg-white/20 p-3 text-base sm:text-lg font-semibold text-white .break-words">
             {data?.name}
           </div>
         </div>

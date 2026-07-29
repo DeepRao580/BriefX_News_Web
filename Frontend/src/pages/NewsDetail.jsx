@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Store from "../store/Store.js"
 import { generateNewsSummary } from "../service/groq";
-import { dbPromise } from "../utilities/indexDB";
+import { getOfflineArticle } from "../store/offlineStore.js";
 
 
 function NewsDetail() {
@@ -16,19 +16,16 @@ function NewsDetail() {
   const [aiSummary, setAiSummary] = useState("");
   const [aiLoading, setAiLoading] = useState(false);
 
-  const { id } = useParams();
+  const { id, category } = useParams();
 
   useEffect(() => {
     const fetchNewsDetail = async () => {
       try {
         setLoading(true);
         if (!navigator.onLine) {
-          const db = await dbPromise;
-
-          const article = await db.get("news", id);
+          const article = await getOfflineArticle(category, id);
 
           setNewsDetail(article);
-          setLoading(false);
 
           return;
         }
@@ -56,7 +53,7 @@ function NewsDetail() {
     };
 
     fetchNewsDetail();
-  }, [id,lang]);
+  }, [id,lang,category]);
 
   const generateSummary = async () => {
   try {

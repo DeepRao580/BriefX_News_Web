@@ -27,7 +27,7 @@ function App(){
                 <Route path="/" element={<Layout/>}>
                     <Route index element={<Home/>}/>
                     <Route path="/searchnews" element={<ProtectedRoute><SearchNews/></ProtectedRoute>}/>
-                    <Route path="/searchnews/:id" element={<ProtectedRoute><NewsDetail/></ProtectedRoute>}/>
+                    <Route path="/searchnews/:category/:id" element={<ProtectedRoute><NewsDetail/></ProtectedRoute>}/>
                     <Route path="/technologyNews" element={<ProtectedRoute><TechnologyNews/></ProtectedRoute>}/>
                     <Route path="/educationnews" element={<ProtectedRoute><EducationNews/></ProtectedRoute>}/>
                     <Route path="/businessnews" element={<ProtectedRoute><BusinessNews/></ProtectedRoute>}/>

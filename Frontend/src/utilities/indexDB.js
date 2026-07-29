@@ -1,11 +1,15 @@
 import { openDB } from "idb";
 
-export const dbPromise = openDB("BriefXDB", 1, {
+export const newsDB = openDB("BriefXDB", 2, {
   upgrade(db) {
-    if (!db.objectStoreNames.contains("news")) {
-      db.createObjectStore("news", {
-        keyPath: "id",
-      });
-    }
+    const categories = ["home","sports","health","business","technology","science","education","entertainment"];
+
+    categories.forEach((category) => {
+      if (!db.objectStoreNames.contains(category)) {
+        db.createObjectStore(category, {
+          keyPath: "id",
+        });
+      }
+    });
   },
 });

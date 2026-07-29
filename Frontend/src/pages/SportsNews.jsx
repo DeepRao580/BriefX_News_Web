@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import NewsCard from "../components/NewsCard";
 import Store from "../store/Store";
+import { saveOfflineNews, getOfflineNews } from "../store/offlineStore";
 
 function SportsNews() {
   const [loading, setLoading] = useState(true);
@@ -12,6 +13,13 @@ function SportsNews() {
     const fetchRecentNews = async () => {
       try {
         setLoading(true);
+        if(!navigator.onLine){
+          const offlineNews = await getOfflineNews("sports");
+                            
+          setAllRecentNews(offlineNews);
+                            
+          return;
+        }
 
         const response = await fetch(
           `https://api.currentsapi.services/v1/latest-news?language=${lang}&country=IN&category=sports&page_size=20`,
@@ -23,7 +31,7 @@ function SportsNews() {
         );
 
         const data = await response.json();
-        console.log(data.news);
+        await saveOfflineNews("sports",data.news)
         setAllRecentNews(data.news);
       } catch (error) {
         console.error("Error in fetching recent news", error);
@@ -56,7 +64,7 @@ function SportsNews() {
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-2 lg:gap-8 xl:grid-cols-3 xl:gap-10">
 
           {allRecentNews.map((singleNews, index) => (
-            <NewsCard key={index} singleNews={singleNews} />
+            <NewsCard key={index} singleNews={singleNews} category="sports" />
           ))}
 
         </div>

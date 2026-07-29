@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Store from "../store/Store.js";
 
-function NewsCard({ singleNews }) {
+function NewsCard({ singleNews, category }) {
   const { bookmarks, addBookmark, removeBookmark,theme } = Store();
 
   const isBooked = bookmarks.some(
@@ -69,7 +69,7 @@ function NewsCard({ singleNews }) {
           </div>
 
           <Link
-            to={`/searchnews/${encodeURIComponent(singleNews.id)}`}
+            to={`/searchnews/${category}/${encodeURIComponent(singleNews.id)}`}
             className="block w-full rounded-xl bg-blue-600 py-2.5 text-center text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-700 sm:py-3 sm:text-[17px]"
           >
             Read Full Article →

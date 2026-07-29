@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import NewsCard from "../components/NewsCard";
 import Store from "../store/Store";
-import { dbPromise } from "../utilities/indexDB";
+import { saveOfflineNews, getOfflineNews } from "../store/offlineStore";
 
 function Home() {
   const [loading, setLoading] = useState(true);
@@ -13,13 +13,13 @@ function Home() {
     const fetchRecentNews = async () => {
       try {
         setLoading(true);
+        if(!navigator.onLine){
+          const offlineNews = await getOfflineNews("home");
 
-        if (!navigator.onLine) {
-        const db = await dbPromise;
-        const cachedNews = await db.getAll("news");
-        console.log("Offline News:", cachedNews);
-        setAllRecentNews(cachedNews);
-        return;}
+          setAllRecentNews(offlineNews);
+
+          return;
+        }
 
         const response = await fetch(
           `https://api.currentsapi.services/v1/latest-news?language=${lang}&country=IN&page_size=20`,
@@ -31,15 +31,8 @@ function Home() {
         );
 
         const data = await response.json();
-        console.log(data.news);
+        await saveOfflineNews("home", data.news);
         setAllRecentNews(data.news);
-        const db = await dbPromise;
-
-        const tx = db.transaction("news", "readwrite");
-        for (const article of data.news) {
-          await tx.store.put(article);
-        }
-        await tx.done;
       } catch (error) {
         console.error("Error in fetching recent news", error);
       } finally {
@@ -71,7 +64,7 @@ function Home() {
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-2 lg:gap-8 xl:grid-cols-3 xl:gap-10">
 
           {allRecentNews.map((singleNews, index) => (
-            <NewsCard key={index} singleNews={singleNews} />
+            <NewsCard key={index} singleNews={singleNews} category="home" />
           ))}
 
         </div>

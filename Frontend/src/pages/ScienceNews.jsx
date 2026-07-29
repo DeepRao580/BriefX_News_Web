@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import NewsCard from "../components/NewsCard";
 import Store from "../store/Store";
+import { saveOfflineNews, getOfflineNews } from "../store/offlineStore";
 
 function ScienceNews() {
   const [loading, setLoading] = useState(true);
@@ -12,6 +13,13 @@ function ScienceNews() {
     const fetchRecentNews = async () => {
       try {
         setLoading(true);
+        if(!navigator.onLine){
+          const offlineNews = await getOfflineNews("science");
+            
+          setAllRecentNews(offlineNews);
+            
+          return;
+        }
 
         const response = await fetch(
           `https://api.currentsapi.services/v1/search?keywords=science OR research OR space OR physics OR biology&language=${lang}&country=IN&page_size=20`,
@@ -23,7 +31,7 @@ function ScienceNews() {
         );
 
         const data = await response.json();
-        console.log(data.news);
+        await saveOfflineNews("science", data.news);
         setAllRecentNews(data.news);
       } catch (error) {
         console.error("Error in fetching recent news", error);
@@ -56,7 +64,7 @@ function ScienceNews() {
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-2 lg:gap-8 xl:grid-cols-3 xl:gap-10">
 
           {allRecentNews.map((singleNews, index) => (
-            <NewsCard key={index} singleNews={singleNews} />
+            <NewsCard key={index} singleNews={singleNews} category="science" />
           ))}
 
         </div>

@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import NewsCard from "../components/NewsCard";
 import Store from "../store/Store";
+import { saveOfflineNews, getOfflineNews } from "../store/offlineStore";
 
 function TechnologyNews() {
   const [loading, setLoading] = useState(true);
@@ -12,6 +13,13 @@ function TechnologyNews() {
     const fetchRecentNews = async () => {
       try {
         setLoading(true);
+        if(!navigator.onLine){
+          const offlineNews = await getOfflineNews("technology");
+                            
+          setAllRecentNews(offlineNews);
+                            
+          return;
+        }
 
         const response = await fetch(
           `https://api.currentsapi.services/v1/search?keywords=AI OR technology OR startups OR cybersecurity OR cloud computing&language=${lang}&country=IN&page_size=20`,
@@ -23,7 +31,7 @@ function TechnologyNews() {
         );
 
         const data = await response.json();
-        console.log(data.news);
+        await saveOfflineNews("technology",data.news)
         setAllRecentNews(data.news);
       } catch (error) {
         console.error("Error in fetching recent news", error);
@@ -56,7 +64,7 @@ function TechnologyNews() {
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-2 lg:gap-8 xl:grid-cols-3 xl:gap-10">
 
           {allRecentNews.map((singleNews, index) => (
-            <NewsCard key={index} singleNews={singleNews} />
+            <NewsCard key={index} singleNews={singleNews} category="technology" />
           ))}
 
         </div>

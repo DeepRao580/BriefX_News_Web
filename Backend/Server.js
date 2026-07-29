@@ -7,7 +7,7 @@ import "dotenv/config"
 import mongoose from "mongoose"
 import AuthRoutes from "./Routes/AuthRoutes.js"
 import ProfileRoutes from "./Routes/ProfileRoutes.js"
-import CommentRoutes from "./Routes/commentRoutes.js";
+import CommentRoutes from "./Routes/CommentRoutes.js";
 const app=express()
 
 app.use(cors())

@@ -1,6 +1,6 @@
 import express from "express";
-import protect from "../middleware/authMiddleware.js";
-import {createComment,fetchComments,} from "../controller/commentController.js";
+import protect from "../middleware/AuthMiddleware.js";
+import {createComment,fetchComments,} from "../Controller/CommentController.js";
 
 const router = express.Router();
 

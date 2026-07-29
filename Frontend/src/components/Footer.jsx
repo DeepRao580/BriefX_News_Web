@@ -1,5 +1,5 @@
 import React from "react";
-import BriefX from "../assets/BriefX_crop.png";
+import BriefX from "../assets/BriefX_crop4.png";
 import Playstore from "../assets/google-playstore-icon.svg";
 import AppleStore from "../assets/apple-store-icon.svg";
 import "@fortawesome/fontawesome-free/css/all.min.css";
@@ -9,8 +9,8 @@ function Footer() {
       <footer className="border-t border-gray-300 py-6 m-20">
 
         <div className="max-w-8xl mx-auto px-3 flex items-center justify-between">
-          <div className="flex items-center">
-            <img src={BriefX} alt="BriefX" className="h-30 mx-2"/>
+          <div className="flex items-center h-50">
+            <img src={BriefX} alt="BriefX" className="h-75 mx-2"/>
           </div>
 
           <div>

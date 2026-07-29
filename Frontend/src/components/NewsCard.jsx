@@ -3,15 +3,17 @@ import { Link } from "react-router-dom";
 import Store from "../store/Store.js";
 
 function NewsCard({ singleNews }) {
-  const { bookmarks, addBookmark, removeBookmark } = Store();
+  const { bookmarks, addBookmark, removeBookmark,theme } = Store();
 
   const isBooked = bookmarks.some(
     (booked) => booked.id === singleNews?.id
   );
 
   return (
-    <div className="group flex h-auto min-h-\[560px] w-full flex-col overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
-
+    <div className={`group flex h-auto min-h-\[560px] w-full flex-col overflow-hidden rounded-3xl border shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${
+    theme === "light"
+      ? "bg-slate-100 border-gray-200 text-gray-900"
+      : "bg-gray-900 border-gray-700 text-grey"}`}>
       <img
         src={singleNews.image}
         alt="News-image"
@@ -37,7 +39,7 @@ function NewsCard({ singleNews }) {
 
         </div>
 
-        <h2 className="mt-3 min-h-\[72px] text-lg font-bold leading-7 text-slate-900 line-clamp-3 sm:min-h-\[80px] sm:text-xl md:min-h-\[88px] md:text-[21px] md:leading-8">
+        <h2 className="mt-3 min-h-\[72px] text-lg font-bold leading-7 line-clamp-3 sm:min-h-\[80px] sm:text-xl md:min-h-\[88px] md:text-[21px] md:leading-8">
           {singleNews.title}
         </h2>
 
@@ -45,11 +47,11 @@ function NewsCard({ singleNews }) {
 
           <div className="mb-5 flex items-center justify-between gap-3">
 
-            <button
-              className={`rounded-xl px-4 py-2 text-xs font-semibold transition-all duration-300 sm:px-5 sm:py-3 sm:text-sm ${
+            <button className={`rounded-xl px-4 py-2 text-xs font-semibold transition-all duration-300 sm:px-5 sm:py-3 sm:text-sm
+                 ${
                 isBooked
                   ? "border border-red-200 bg-red-50 text-red-600 hover:bg-red-100"
-                  : "bg-slate-900 text-white hover:bg-blue-600"
+                  : "bg-violet-500 text-white hover:bg-violet-700"
               }`}
               onClick={() => {
                 isBooked
@@ -60,7 +62,7 @@ function NewsCard({ singleNews }) {
               {isBooked ? "📌 Bookmarked" : "🔖 Bookmark"}
             </button>
 
-            <div className="rounded-full bg-slate-100 p-2 text-xl sm:p-3 sm:text-2xl">
+            <div className="rounded-full p-2 text-xl sm:p-3 sm:text-2xl">
               {isBooked ? "📌" : "📰"}
             </div>
 

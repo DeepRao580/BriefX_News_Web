@@ -147,14 +147,15 @@ function NewsDetail() {
         </p>
       </div>
       </div>)}
-
-      <Link
-        to="/"
-        className="mt-10 block w-fit rounded-xl bg-blue-600 px-7 py-3 text-lg font-semibold text-white transition-all duration-300 hover:bg-blue-700 hover:shadow-lg"
-      >
+     <div className="mt-6 flex justify-start">
+      <a href={newsDetail.url} target="_blank" rel="noopener noreferrer"
+        className="rounded-xl bg-red-500 px-6 py-3 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-red-700 hover:shadow-xl">
+       📰 Read Full Article
+      </a>
+     </div>
+     <Link to="/" className="mt-10 block w-fit rounded-xl bg-blue-600 px-7 py-3 text-lg font-semibold text-white transition-all duration-300 hover:bg-blue-700 hover:shadow-lg">
         ← Back to Home
       </Link>
-      <div><a href={newsDetail.url}>Detail</a></div>
     </div>
   );}
 }

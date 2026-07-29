@@ -51,9 +51,9 @@ function Navbar() {
         <div className="flex-1 flex justify-end items-center gap-4">
           <Link to="/signup" className="btn btn-outline btn-primary">Sign Up</Link>
 
-          <Link to="/login" className="btn btn-primary">Login</Link>
+          <Link to="/login" className="btn bg-blue-600 hover:bg-blue-800 text-white">Login</Link>
 
-          <Link to="/logout" className="btn bg-red-500 text-white">Logout</Link>
+          <Link to="/logout" className="btn bg-red-500 text-white hover:bg-red-700">Logout</Link>
           <Link to="/profile" className="flex h-12 w-12 items-center justify-center rounded-full text-blue-600 hover:text-indigo-700 transition-all duration-300 hover:scale-110">
             <FaUserCircle size={42} /></Link>
         </div>

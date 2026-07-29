@@ -30,7 +30,7 @@ function CommentCard({ news }) {
   const fetchComments = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/comments/${news.id}`,
+        `${import.meta.env.VITE_API_URL}/api/comments/${news.id}`,
         {
           method: "GET",
           headers: {

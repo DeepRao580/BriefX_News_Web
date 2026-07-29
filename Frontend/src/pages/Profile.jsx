@@ -20,7 +20,7 @@ function Profile() {
     const fetchProfile = async () => {
       try {
         setLoading(true);
-        const response = await fetch("http://localhost:5000/api/profile/me",
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/profile/me`,
           {
             method: "GET",
             headers: {"Content-Type": "application/json",Authorization: `Bearer ${token}`,},
@@ -69,7 +69,7 @@ function Profile() {
 
   const handleSave = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/profile/update",
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/profile/update`,
         {
           method: "PUT",
           headers: {"Content-Type": "application/json",Authorization: `Bearer ${token}`,},
@@ -115,7 +115,7 @@ console.log(data);
 
    const handleSavePassword = async (e) => {
     try {
-      const response = await fetch("http://localhost:5000/api/profile/change-password",
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/profile/change-password`,
         {
           method: "PUT",
           headers: {"Content-Type": "application/json",Authorization: `Bearer ${token}`,},

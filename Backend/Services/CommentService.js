@@ -1,4 +1,4 @@
-import { createComment, getCommentsByNewsId } from "../repositories/commentRepository.js";
+import { createComment, getCommentsByNewsId } from "../Repositories/CommentRepository.js";
 
 export const addComment = async (commentData) => {
   return await createComment(commentData);

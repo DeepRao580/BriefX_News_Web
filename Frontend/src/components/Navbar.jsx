@@ -133,14 +133,11 @@ function Navbar() {
             </svg>
                       </div>
 
-          <ul
-            tabIndex={-1}
-            className={`menu menu-sm dropdown-content rounded-box z-50 mt-3 w-52 p-2 shadow ${
-              theme === "light"
-                ? "bg-white text-black"
-                : "bg-gray-800 text-white"
-            }`}
-          >
+          <ul tabIndex={0}
+          className={`menu menu-sm dropdown-content rounded-box z-50 mt-3  w-22 sm:w-52 p-2 shadow ${
+          theme === "light"
+            ? "bg-white text-black"
+            : "bg-gray-800 text-white"}`}>
             <li>
               <Link to="/profile" className="badge font-bold">
                 Profile
@@ -155,7 +152,7 @@ function Navbar() {
 
             <li>
               <Link to="/comment" className="badge">
-                Comments Page
+                Comments
               </Link>
             </li>
           </ul>

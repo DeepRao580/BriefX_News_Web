@@ -55,7 +55,7 @@ function Logout() {
 
         <button
           onClick={() => navigate(-1)}
-          className="btn btn-outline w-full sm:w-auto px-6"
+          className="btn btn-outline border-blue-500 text-blue-500 w-full sm:w-auto px-6 hover:bg-blue-200"
         >
           No
         </button>

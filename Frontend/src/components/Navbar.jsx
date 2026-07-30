@@ -110,7 +110,7 @@ function Navbar() {
           </Link>
         </div>
 
-        <div className="dropdown dropdown-end self-end lg:self-auto">
+        <div className="dropdown self-end lg:self-auto">
           <div
             tabIndex={0}
             role="button"
